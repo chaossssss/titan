@@ -1,8 +1,11 @@
 <template>
 	<el-container style="height:100vh;">
-	  <el-aside width="200px">Aside</el-aside>
+	  <el-aside width="200px">
+			<SlideMenu></SlideMenu>
+	  </el-aside>
 	  <el-container>
-	    <el-header>Header</el-header>
+	    <el-header>Header<router-view/>
+	    </el-header>
 	    <el-main>Main</el-main>
 	  </el-container>
 	</el-container>
@@ -34,11 +37,11 @@
 	}
 </style>
 <script>
-
+import SlideMenu from "@/components/SlideMenu.vue"
 export default {
   name: 'home',
   components: {
-
+		SlideMenu
   }
 }
 </script>
