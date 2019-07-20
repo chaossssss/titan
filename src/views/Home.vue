@@ -4,13 +4,17 @@
 			<SlideMenu></SlideMenu>
 	  </el-aside>
 	  <el-container>
-	    <el-header>Header<router-view/>
+	    <el-header>Header
+
 	    </el-header>
-	    <el-main>Main</el-main>
+	    <el-main>main
+	    	<router-view/>
+	    </el-main>
 	  </el-container>
 	</el-container>
 </template>
 <style>
+
 	.el-header, .el-footer {
 	  background-color: #B3C0D1;
 	  color: #333;
@@ -22,7 +26,6 @@
 	  background-color: #D3DCE6;
 	  color: #333;
 	  text-align: center;
-	  line-height: 200px;
 	}
 
 	.el-main {
