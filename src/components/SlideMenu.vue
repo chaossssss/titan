@@ -6,7 +6,9 @@
         :default-active="$route.path"
         class="el-menu-vertical-demo"
         router
-        :background-color="bgColor"
+        background-color="#0e2d49" 
+        text-color="#fff" 
+        style="border-right:0" 
         @select="getIndex">
         <template v-for="item in routerList">
           <el-submenu v-if="item.hasSub == 1" :index="item.link">
@@ -80,7 +82,6 @@ export default {
           sublink:"/Gun"
         }]
       }],
-      bgColor: "#0e2d49"
     }
   },
   methods:{
@@ -99,7 +100,7 @@ export default {
   background: #0e2d49;
 }
 .menu-logo {
-  width: 80%;
+  width: 76%;
   margin: 0 auto;
 }
 </style>
