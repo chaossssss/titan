@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import './plugins/element.js'
 import router from './router'
-import store from './store'
+import store from './store/store'
 import "./static/css/reset.css"
 import {
   Pagination,
@@ -81,7 +81,8 @@ import {
   Loading,
   MessageBox,
   Message,
-  Notification
+  Notification,
+  Avatar
 } from 'element-ui';
 
 Vue.use(Pagination);
@@ -157,6 +158,7 @@ Vue.use(Calendar);
 Vue.use(Backtop);
 Vue.use(PageHeader);
 Vue.use(CascaderPanel);
+Vue.use(Avatar);
 
 Vue.use(Loading.directive);
 

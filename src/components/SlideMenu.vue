@@ -5,22 +5,23 @@
       <el-menu
         :default-active="$route.path"
         class="el-menu-vertical-demo"
-        router
+        router 
+        :unique-opened="true"
         background-color="#0e2d49" 
         text-color="#fff" 
         style="border-right:0" 
         @select="getIndex">
         <template v-for="item in routerList">
-          <el-submenu v-if="item.hasSub == 1" :index="item.link">
+          <el-submenu v-if="item.hasSub == 1" :index="item.link" :key="item.link">
             <template slot="title">
               <i :class="item.icon"></i>
               <span>{{item.title}}</span>
             </template>
-            <el-menu-item-group v-for="item in item.subitem">
+            <el-menu-item-group v-for="item in item.subitem" :key="item.sublink">
               <el-menu-item :index="item.sublink">{{item.title}}</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item v-if="item.hasSub == 0" :index="item.link">
+          <el-menu-item v-if="item.hasSub == 0" :index="item.link" :key="item.link">
             <i :class="item.icon"></i>
             <span slot="title">{{item.title}}</span>
           </el-menu-item>
@@ -54,12 +55,14 @@ export default {
         hasSub:0,
         title:"公开情报",
         link:"/OpenInformation",
-        icon: "el-icon-info"
+        icon: "el-icon-info",
+        subitem:[]
       },{
         hasSub:0,
         title:"战役信息",
         link:"/War",
-        icon: "el-icon-menu"
+        icon: "el-icon-menu",
+        subitem:[]
       },{
         hasSub:1,
         title:"物资情况",
@@ -86,8 +89,27 @@ export default {
   },
   methods:{
     getIndex(index){
-      this.$store.commit("addRouter",index)
-      console.log(this.$store.state.router)
+      let router = {},routerList = this.routerList
+      for(let i = 0; i < routerList.length; i++){
+        if(routerList[i].link == index){
+          router.title = routerList[i].title
+          router.link = index
+          router.isCurrent = true
+          break
+        }
+        for(let j = 0; j < routerList[i].subitem.length; j++){
+          if(routerList[i].subitem[j].sublink == index){
+            router.title = routerList[i].subitem[j].title
+            router.link = index
+            router.isCurrent = true
+            break
+          }
+          
+        }
+      }
+      
+      this.$store.commit("addRouter",router)
+      // console.log(this.$store.state.router)
     }
   }
 }
