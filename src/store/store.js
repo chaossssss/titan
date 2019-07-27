@@ -8,24 +8,65 @@ export default new Vuex.Store({
   	router:[]
   },
   mutations: {
-  	addRouter(state,router){
-      if(state.router.length == 0){
-        state.router.push(router)
-      }else if(state.router.length > 0){
-        let k = state.router.length
-        
-        for(var i in state.router){
-          state.router[i].isCurrent = false
-          if(state.router[i].link == router.link){
-            state.router[i].isCurrent = true
+    getRouter(state,str){
+      state.router = JSON.parse(str)
+    },
+  	addRouter(state,url){
+      state.router.push(url)
+      let router = state.router
+
+      function uniqueArray(array, key){
+        var result = [array[0]];
+        for(var i = 1; i < array.length; i++){
+          var item = array[i];
+          var repeat = false;
+          for (var j = 0; j < result.length; j++) {
+            result[j].isCurrent = 0
+            if (item[key] == result[j][key]) {
+              result[j].isCurrent = 1
+              repeat = true;
+            }
+          }
+          if (!repeat) {
+            item.isCurrent = 1
+            result.push(item);
+          }
+        }
+        return result;
+      }
+
+      let newRouter = uniqueArray(router,"link")
+      console.log("newRouter",newRouter)
+      let routerLength = state.router.length;
+      state.router.splice(0,routerLength)
+      for(let i = 0; i < newRouter.length; i++){
+        state.router.push(newRouter[i])
+      }    
+      localStorage.setItem("router",JSON.stringify(state.router))
+      console.log('stores：',state.router);
+
+  	},
+    delRouter(state,url){
+      let routerLength = state.router.length;
+      for(let i in state.router){
+        if(state.router[i].link == url){
+          if(state.router[i].isCurrent == 0){
+            state.router.splice(i,1)
           }else{
-            console.log(2222)
-            state.router.push(router)
+            if(i < routerLength - 1){
+              state.router[parseInt(i)+1].isCurrent = 1
+              state.router.splice(i,1)
+            }
+            else if(i == routerLength - 1 && routerLength > 1){
+              console.log(i)
+              state.router[parseInt(i)-1].isCurrent = 1
+              state.router.splice(i,1)
+            }
           }
         }
       }
-      console.log('stores：',state.router);
-  	}
+      // console.log("delRouter:",)
+    }
   },
   actions: {
 

@@ -16,6 +16,7 @@
 				</el-row>
 	    </el-header>
 	    <el-main>
+				<TabNav/>
 	    	<router-view/>
 	    </el-main>
 	  </el-container>
@@ -40,7 +41,6 @@
 	  background-color: #E9EEF3;
 	  color: #333;
 	  text-align: center;
-	  line-height: 160px;
 	}
 
 	body > .el-container {
@@ -49,6 +49,7 @@
 </style>
 <script>
 import SlideMenu from "@/components/SlideMenu.vue"
+import TabNav from "@/components/TabNav.vue"
 export default {
   name: 'home',
   data(){
@@ -58,7 +59,8 @@ export default {
   	}
   },
   components: {
-		SlideMenu
+		SlideMenu,
+		TabNav
   }
 }
 </script>

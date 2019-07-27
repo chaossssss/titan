@@ -94,14 +94,14 @@ export default {
         if(routerList[i].link == index){
           router.title = routerList[i].title
           router.link = index
-          router.isCurrent = true
+          router.isCurrent = 1
           break
         }
         for(let j = 0; j < routerList[i].subitem.length; j++){
           if(routerList[i].subitem[j].sublink == index){
             router.title = routerList[i].subitem[j].title
             router.link = index
-            router.isCurrent = true
+            router.isCurrent = 1
             break
           }
           
@@ -109,7 +109,7 @@ export default {
       }
       
       this.$store.commit("addRouter",router)
-      // console.log(this.$store.state.router)
+      console.log(this.$store.state.router)
     }
   }
 }
