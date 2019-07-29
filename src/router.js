@@ -2,9 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
-import SurveyCorps from './views/corps/SurveyCorps'
-import CharterCorps from './views/corps/CharterCorps'
-import BeStationedCorps from './views/corps/BeStationedCorps'
+import Corps from './views/Corps'
 import OpenInformation from './views/OpenInformation'
 import War from './views/War'
 import Gas from './views/material/Gas'
@@ -25,13 +23,13 @@ export default new Router({
       component: Home,
       children:[{
         path:"SurveyCorps",
-        component: SurveyCorps
+        component: Corps
       },{
         path:"CharterCorps",
-        component: CharterCorps
+        component: Corps
       },{
         path:"BeStationedCorps",
-        component: BeStationedCorps
+        component: Corps
       },{
         path:"OpenInformation",
         component: OpenInformation

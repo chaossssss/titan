@@ -1,0 +1,1 @@
+json-server --c config.json users.json

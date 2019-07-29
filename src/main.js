@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import './plugins/axios'
 import App from './App.vue'
 import './plugins/element.js'
 import router from './router'
@@ -161,6 +162,10 @@ Vue.use(CascaderPanel);
 Vue.use(Avatar);
 
 Vue.use(Loading.directive);
+
+import { post, fetch }  from "../config/axios";
+Vue.prototype.$get=fetch;
+Vue.prototype.$post=post;
 
 Vue.prototype.$loading = Loading.service;
 Vue.prototype.$msgbox = MessageBox;

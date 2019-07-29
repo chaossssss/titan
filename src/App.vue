@@ -19,8 +19,24 @@ export default {
       this.$store.commit("getRouter",storageStr)
     }
   },
+  mounted(){
+    window.onload = function(){
+      if(!window.localStorage["tempFlag"]){
+
+      }else{
+        window.localStorage.removeItem("tempFlag");
+        localStorage.removeItem("router")
+      }
+    }
+    window.onunload = function (){
+      window.localStorage["tempFlag"] = true;
+    }
+    window.onbeforeunload = function (){
+      window.localStorage["tempFlag"] = true;
+    }
+  },
   beforeDestory(){
-    localStorage.removeItem("router")
+    
   }
 }
 </script>

@@ -51,18 +51,17 @@ export default new Vuex.Store({
       for(let i in state.router){
         if(state.router[i].link == url){
           if(state.router[i].isCurrent == 0){
-            state.router.splice(i,1)
+            
           }else{
             if(i < routerLength - 1){
               state.router[parseInt(i)+1].isCurrent = 1
-              state.router.splice(i,1)
             }
             else if(i == routerLength - 1 && routerLength > 1){
-              console.log(i)
               state.router[parseInt(i)-1].isCurrent = 1
-              state.router.splice(i,1)
             }
           }
+          state.router.splice(i,1)
+          localStorage.setItem("router",JSON.stringify(state.router)) 
         }
       }
       // console.log("delRouter:",)
