@@ -41,6 +41,7 @@
 	  background-color: #E9EEF3;
 	  color: #333;
 	  text-align: center;
+	  padding: 0;
 	}
 
 	body > .el-container {

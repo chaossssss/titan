@@ -5,5 +5,5 @@
   "read-only": false,        
   "no-cors": true,          
   "no-gzip": false,          
-  "routes": "route.json"     
+  "routes": "json-server/route.json"     
 }

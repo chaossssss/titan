@@ -1,46 +1,49 @@
 {
-	"users": [
-		{
-			"name": "艾伦·耶格尔",
-			"age": 15,
-			"birth": "03-30",
-			"ability": [
-				{
-					"fighting": 9,
-					"action-force": 10,
-					"brain-warfare": 7,
-					"coordination": 5
-				}
-			],
-			"evaluate": "A"
-		},
-		{
-			"name": "三笠·阿克曼",
-			"age": 15,
-			"birth": "02-10",
-			"ability": [
-				{
-					"fighting": 10,
-					"action-force": 9,
-					"brain-warfare": 8,
-					"coordination": 6
-				}
-			],
-			"evaluate": "A+"
-		},
-		{
-			"name": "阿明·阿诺德 ",
-			"age": 15,
-			"birth": "11-03",
-			"ability": [
-				{
-					"fighting": 2,
-					"action-force": 6,
-					"brain-warfare": 10,
-					"coordination": 8
-				}
-			],
-			"evaluate": "A+"
-		}
-	]
+  "users": [
+    {
+      "id": 1,
+      "name": "艾伦·耶格尔",
+      "age": 15,
+      "birth": "03-30",
+      "ability": [
+        {
+          "fighting": 9,
+          "action-force": 10,
+          "brain-warfare": 7,
+          "coordination": 5
+        }
+      ],
+      "evaluate": "A"
+    },
+    {
+      "id": 2,
+      "name": "三笠·阿克曼",
+      "age": 15,
+      "birth": "02-10",
+      "ability": [
+        {
+          "fighting": 10,
+          "action-force": 9,
+          "brain-warfare": 8,
+          "coordination": 6
+        }
+      ],
+      "evaluate": "A+"
+    },
+    {
+      "id": 3,
+      "name": "阿明·阿诺德 ",
+      "age": 15,
+      "birth": "11-03",
+      "ability": [
+        {
+          "fighting": 2,
+          "action-force": 6,
+          "brain-warfare": 10,
+          "coordination": 8
+        }
+      ],
+      "evaluate": "A+"
+    }
+  ]
 }
