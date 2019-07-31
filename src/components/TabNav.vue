@@ -5,6 +5,15 @@
         <span :link="item.link">×</span>
       </li>
     </ul>
+    <el-tabs type="card" closable @edit="handleTabsEdit">
+      <el-tab-pane
+        :key="item.link"
+        v-for="item in routerLink"
+        :label="item.title"
+        :name="item.title"
+      >
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
@@ -17,7 +26,7 @@ export default {
 
   data(){
     return{
-      routerLink: this.$store.state.router
+      routerLink: this.$store.state.router,
     }
   },
   methods:{
@@ -25,6 +34,26 @@ export default {
       if(e.target.tagName == "SPAN"){
         let url = e.target.getAttribute('link')
         this.$store.commit("delRouter",url)
+      }
+    },
+    handleTabsEdit(targetName, action) {
+
+      if (action === 'remove') {
+        let tabs = this.editableTabs;
+        let activeName = this.editableTabsValue;
+        if (activeName === targetName) {
+          tabs.forEach((tab, index) => {
+            if (tab.name === targetName) {
+              let nextTab = tabs[index + 1] || tabs[index - 1];
+              if (nextTab) {
+                activeName = nextTab.name;
+              }
+            }
+          });
+        }
+        
+        this.editableTabsValue = activeName;
+        this.editableTabs = tabs.filter(tab => tab.name !== targetName);
       }
     }
   }
