@@ -5,7 +5,7 @@
         <span :link="item.link">×</span>
       </li>
     </ul>
-    <el-tabs type="card" closable @edit="handleTabsEdit">
+    <el-tabs type="card" v-model="editableTabsValue" closable @edit="handleTabsEdit" @tab-click="currentTab">
       <el-tab-pane
         :key="item.link"
         v-for="item in routerLink"
@@ -27,7 +27,17 @@ export default {
   data(){
     return{
       routerLink: this.$store.state.router,
+      editableTabsValue:""
     }
+  },
+  mounted(){
+    let tabs = this.routerLink
+    tabs.forEach((tab,index)=>{
+      console.log(tab)
+      if(tab.isCurrent == 1){
+        this.editableTabsValue = tab.title
+      }
+    })
   },
   methods:{
     closeTab(e){
@@ -37,9 +47,9 @@ export default {
       }
     },
     handleTabsEdit(targetName, action) {
-
+      console.log("targetName",targetName)
       if (action === 'remove') {
-        let tabs = this.editableTabs;
+        let tabs = this.routerLink;
         let activeName = this.editableTabsValue;
         if (activeName === targetName) {
           tabs.forEach((tab, index) => {
@@ -52,9 +62,12 @@ export default {
           });
         }
         
-        this.editableTabsValue = activeName;
-        this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+        // this.editableTabsValue = activeName;
+        // this.editableTabs = tabs.filter(tab => tab.name !== targetName);
       }
+    },
+    currentTab(targetName){
+      console.log(targetName.index)
     }
   }
 }
