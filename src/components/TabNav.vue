@@ -1,10 +1,6 @@
 <template>
   <div class="tab-nav">
-    <ul @click="closeTab($event)">
-      <li v-for="(item,index) in routerLink" :key="index">{{item.title}}{{item.isCurrent}}
-        <span :link="item.link">×</span>
-      </li>
-    </ul>
+
     <el-tabs type="card" v-model="editableTabsValue" closable @edit="handleTabsEdit" @tab-click="currentTab">
       <el-tab-pane
         :key="item.link"
@@ -30,16 +26,28 @@ export default {
       editableTabsValue:""
     }
   },
+  watch:{
+    "routerLink":function(newVals){
+      newVals.forEach((newVal,index)=>{
+        if(newVal.isCurrent == 1){
+          this.editableTabsValue = newVal.title
+        }
+      })
+    }
+  },
   mounted(){
-    let tabs = this.routerLink
-    tabs.forEach((tab,index)=>{
-      console.log(tab)
-      if(tab.isCurrent == 1){
-        this.editableTabsValue = tab.title
-      }
-    })
+    this.checkRouter()
   },
   methods:{
+    checkRouter(){
+      let tabs = this.$store.state.router
+      tabs.forEach((tab,index)=>{
+        if(tab.isCurrent == 1){
+          this.editableTabsValue = tab.title
+          this.routerLink = this.$store.state.router
+        }
+      })
+    },
     closeTab(e){
       if(e.target.tagName == "SPAN"){
         let url = e.target.getAttribute('link')
@@ -47,27 +55,24 @@ export default {
       }
     },
     handleTabsEdit(targetName, action) {
-      console.log("targetName",targetName)
       if (action === 'remove') {
-        let tabs = this.routerLink;
-        let activeName = this.editableTabsValue;
-        if (activeName === targetName) {
-          tabs.forEach((tab, index) => {
-            if (tab.name === targetName) {
-              let nextTab = tabs[index + 1] || tabs[index - 1];
-              if (nextTab) {
-                activeName = nextTab.name;
-              }
-            }
-          });
-        }
-        
-        // this.editableTabsValue = activeName;
-        // this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+        let tabs = this.$store.state.router
+        tabs.forEach((tab, index) => {
+          if (tab.title === targetName) {
+            this.$store.commit("delRouter",tab.link)
+          }
+        });
+        this.checkRouter()
       }
     },
-    currentTab(targetName){
-      console.log(targetName.index)
+    currentTab(tabnav){
+      let tabs = this.$store.state.router
+      tabs.forEach((tab,index) => {
+        if(tab.title === tabnav.name){
+          this.$store.commit("addRouter",tab.link)
+        }
+      })
+      this.checkRouter()
     }
   }
 }

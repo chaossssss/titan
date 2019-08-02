@@ -36,14 +36,14 @@ export default new Vuex.Store({
       }
 
       let newRouter = uniqueArray(router,"link")
-      console.log("newRouter",newRouter)
+      // console.log("newRouter",newRouter)
       let routerLength = state.router.length;
       state.router.splice(0,routerLength)
       for(let i = 0; i < newRouter.length; i++){
         state.router.push(newRouter[i])
       }    
       localStorage.setItem("router",JSON.stringify(state.router))
-      console.log('stores：',state.router);
+      // console.log('stores：',state.router);
 
   	},
     delRouter(state,url){
