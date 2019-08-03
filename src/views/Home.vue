@@ -5,14 +5,14 @@
 	  </el-aside>
 	  <el-container>
 	    <el-header>
-				<el-row class="demo-avatar demo-basic">
-					<el-col :span="12">
-					  <div class="demo-basic--circle">
-					    <div class="block">
-					      <el-avatar :size="size" :src="circleUrl"></el-avatar>
-					    </div>
-					  </div>
-					</el-col>
+	    	<NowTime/>
+				<el-row class="avatar-box">
+		      <el-dropdown size="small">
+			      <el-avatar :size="size" :fit="picfit" :src="circleUrl" style="margin-top:8px;"></el-avatar>
+		        <el-dropdown-menu slot="dropdown">
+		          <el-dropdown-item>Levi</el-dropdown-item>
+		        </el-dropdown-menu>
+		      </el-dropdown>
 				</el-row>
 	    </el-header>
 	    <el-main>
@@ -27,7 +27,6 @@
 	.el-header, .el-footer {
 	  background-color: #B3C0D1;
 	  color: #333;
-	  text-align: center;
 	  line-height: 60px;
 	}
 
@@ -47,21 +46,28 @@
 	body > .el-container {
 	  margin-bottom: 40px;
 	}
+	.avatar-box {
+		text-align: right;
+	}
 </style>
 <script>
 import SlideMenu from "@/components/SlideMenu.vue"
 import TabNav from "@/components/TabNav.vue"
+import NowTime from "@/components/NowTime.vue"
+import HighLevelPic from "../static/images/avatar.jpg"
 export default {
   name: 'home',
   data(){
   	return{
-  		circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
-  		size: "large"
+  		circleUrl: HighLevelPic,
+  		size: "large",
+  		picfit: "fill"
   	}
   },
   components: {
 		SlideMenu,
-		TabNav
+		TabNav,
+		NowTime
   }
 }
 </script>
