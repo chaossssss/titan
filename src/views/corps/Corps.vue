@@ -1,10 +1,11 @@
 <template>
   <div class="container">
     <CorpsList/>
+    <router-view/>
   </div>
 </template>
 <script type="text/javascript">
-import CorpsList from '@/components/CorpsList'
+import CorpsList from './CorpsList'
 export default{
 	name: 'corps',
 	data(){

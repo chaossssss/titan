@@ -19,6 +19,14 @@
       label="出生日期">
     </el-table-column>
     <el-table-column
+      prop="height"
+      label="身高(cm)">
+    </el-table-column>
+    <el-table-column
+      prop="weight"
+      label="体重(kg)">
+    </el-table-column>
+    <el-table-column
       fixed="right"
       label="操作"
       width="100">
@@ -39,7 +47,7 @@ export default {
     }
   },
   mounted(){
-    let path = this.$route.path
+    let path = this.$router.path
     console.log(path)
     this.$get("/users").then((res)=>{
         console.log(res)
@@ -49,6 +57,7 @@ export default {
   methods: {
     handleClick(row) {
       console.log(row);
+      this.$router.push({path:`SurveyCorps/${row.id}`})
     }
   },
 }

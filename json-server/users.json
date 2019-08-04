@@ -5,6 +5,8 @@
       "name": "艾伦·耶格尔",
       "age": 15,
       "birth": "03-30",
+      "height": 170,
+      "weight": 63,
       "ability": [
         {
           "fighting": 9,
@@ -20,6 +22,8 @@
       "name": "三笠·阿克曼",
       "age": 15,
       "birth": "02-10",
+      "height": 170,
+      "weight": 68,
       "ability": [
         {
           "fighting": 10,
@@ -35,6 +39,8 @@
       "name": "阿明·阿诺德 ",
       "age": 15,
       "birth": "11-03",
+      "height": 163,
+      "weight": 55,
       "ability": [
         {
           "fighting": 2,
