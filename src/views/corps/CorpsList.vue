@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import * as api from '@/api/api.js'
 export default {
   name: 'CorpsList',
   data(){
@@ -47,12 +48,14 @@ export default {
     }
   },
   mounted(){
-    let path = this.$router.path
+    let path = this.$route.path
     console.log(path)
-    this.$get("/users").then((res)=>{
-        console.log(res)
-        this.usersList = res
-    })
+    if(path == '/SurveyCorps'){
+      this.$get(api.GetPropsList).then((res)=>{
+          console.log(res)
+          this.usersList = res
+      })
+    }
   },
   methods: {
     handleClick(row) {
