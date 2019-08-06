@@ -7,12 +7,24 @@
       "birth": "03-30",
       "height": 170,
       "weight": 63,
+      "survival": 1,
+      "titan": true,
       "ability": [
         {
-          "fighting": 9,
-          "action-force": 10,
-          "brain-warfare": 7,
-          "coordination": 5
+          "name":"格斗术",
+          "score":"9"
+        },{
+          "name":"行动力",
+          "score":"10"
+        },{
+          "name":"头脑战",
+          "score":"7"
+        },{
+          "name":"协调性",
+          "score":"5"
+        },{
+          "name":"热血",
+          "score":"10"
         }
       ],
       "evaluate": "A"

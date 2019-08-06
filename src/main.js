@@ -5,8 +5,8 @@ import './plugins/element.js'
 import router from './router'
 import store from './store/store'
 import "./static/css/reset.css"
-// import api from './api/api.js'
-// Vue.prototype.$api = api;
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 import {
   Pagination,
   Dialog,
