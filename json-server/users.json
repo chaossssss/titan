@@ -36,13 +36,25 @@
       "birth": "02-10",
       "height": 170,
       "weight": 68,
+      "survival": 1,
+      "titan": false,
       "ability": [
-        {
-          "fighting": 10,
-          "action-force": 9,
-          "brain-warfare": 8,
-          "coordination": 6
-        }
+      {
+        "name":"格斗术",
+        "score":"10"
+      },{
+        "name":"行动力",
+        "score":"9"
+      },{
+        "name":"头脑战",
+        "score":"8"
+      },{
+        "name":"协调性",
+        "score":"6"
+      },{
+        "name":"关心家人",
+        "score":"10"
+      }
       ],
       "evaluate": "A+"
     },
@@ -53,13 +65,54 @@
       "birth": "11-03",
       "height": 163,
       "weight": 55,
+      "survival": 1,
+      "titan": true,
       "ability": [
-        {
-          "fighting": 2,
-          "action-force": 6,
-          "brain-warfare": 10,
-          "coordination": 8
-        }
+      {
+        "name":"格斗术",
+        "score":"2"
+      },{
+        "name":"行动力",
+        "score":"6"
+      },{
+        "name":"头脑战",
+        "score":"10"
+      },{
+        "name":"协调性",
+        "score":"8"
+      },{
+        "name":"判断力",
+        "score":"10"
+      }
+      ],
+      "evaluate": "A+"
+    },
+    {
+      "id": 4,
+      "name": "埃尔文·史密斯 ",
+      "age": 35,
+      "birth": "01-01",
+      "height": 188,
+      "weight": 92,
+      "survival": 0,
+      "titan": false,
+      "ability": [
+      {
+        "name":"格斗术",
+        "score":"9"
+      },{
+        "name":"行动力",
+        "score":"10"
+      },{
+        "name":"头脑战",
+        "score":"10"
+      },{
+        "name":"协调性",
+        "score":"7"
+      },{
+        "name":"无情",
+        "score":"10"
+      }
       ],
       "evaluate": "A+"
     }

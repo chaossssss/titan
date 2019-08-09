@@ -26,6 +26,13 @@
       <el-form-item label="继承巨人">
         <el-switch v-model="form.titan"></el-switch>
       </el-form-item>
+      <quill-editor v-model="content"
+                    ref="myQuillEditor"
+                    :options="editorOption"
+                    @blur="onEditorBlur($event)"
+                    @focus="onEditorFocus($event)"
+                    @ready="onEditorReady($event)">
+      </quill-editor>
       <el-form-item>
         <el-button type="primary">立即创建</el-button>
         <el-button>取消</el-button>
@@ -115,6 +122,19 @@ export default {
           }]
       };
       radar.setOption(option)
+    },
+    onEditorBlur(quill) {
+      console.log('editor blur!', quill)
+    },
+    onEditorFocus(quill) {
+      console.log('editor focus!', quill)
+    },
+    onEditorReady(quill) {
+      console.log('editor ready!', quill)
+    },
+    onEditorChange({ quill, html, text }) {
+      console.log('editor change!', quill, html, text)
+      this.content = html
     }
   }
 }

@@ -7,6 +7,11 @@ import store from './store/store'
 import "./static/css/reset.css"
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
+import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+Vue.use(VueQuillEditor)
 import {
   Pagination,
   Dialog,
