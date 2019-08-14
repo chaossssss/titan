@@ -60,7 +60,7 @@
     },
     {
       "id": 3,
-      "name": "阿明·阿诺德 ",
+      "name": "阿明·阿诺德",
       "age": 15,
       "birth": "11-03",
       "height": 163,
@@ -89,7 +89,7 @@
     },
     {
       "id": 4,
-      "name": "埃尔文·史密斯 ",
+      "name": "埃尔文·史密斯",
       "age": 35,
       "birth": "01-01",
       "height": 188,
@@ -115,6 +115,209 @@
       }
       ],
       "evaluate": "A+"
+    },
+    {
+      "id": 5,
+      "name": "利威尔·阿克曼",
+      "age": 28,
+      "birth": "01-01",
+      "height": 160,
+      "weight": 65,
+      "survival": 1,
+      "titan": false,
+      "ability": [
+      {
+        "name":"格斗术",
+        "score":"11"
+      },{
+        "name":"行动力",
+        "score":"10"
+      },{
+        "name":"头脑战",
+        "score":"8"
+      },{
+        "name":"协调性",
+        "score":"2"
+      },{
+        "name":"洁癖性",
+        "score":"10"
+      }
+      ],
+      "evaluate": "A++"
+    },
+    {
+      "id": 6,
+      "name": "韩吉·佐耶",
+      "age": 32,
+      "birth": "01-01",
+      "height": 170,
+      "weight": 60,
+      "survival": 1,
+      "titan": false,
+      "ability": [
+      {
+        "name":"格斗术",
+        "score":"7"
+      },{
+        "name":"行动力",
+        "score":"10"
+      },{
+        "name":"头脑战",
+        "score":"10"
+      },{
+        "name":"协调性",
+        "score":"8"
+      },{
+        "name":"智慧",
+        "score":"11"
+      }
+      ],
+      "evaluate": "A+"
+    },
+    {
+      "id": 7,
+      "name": "让·基尔希斯坦",
+      "age": 15,
+      "birth": "01-01",
+      "height": 175,
+      "weight": 65,
+      "survival": 1,
+      "titan": false,
+      "ability": [
+      {
+        "name":"格斗术",
+        "score":"9"
+      },{
+        "name":"行动力",
+        "score":"6"
+      },{
+        "name":"头脑战",
+        "score":"5"
+      },{
+        "name":"协调性",
+        "score":"5"
+      },{
+        "name":"认知力",
+        "score":"10"
+      }
+      ],
+      "evaluate": "A"
+    },
+    {
+      "id": 8,
+      "name": "康尼·斯普林格",
+      "age": 15,
+      "birth": "01-01",
+      "height": 158,
+      "weight": 58,
+      "survival": 1,
+      "titan": false,
+      "ability": [
+      {
+        "name":"格斗术",
+        "score":"6"
+      },{
+        "name":"行动力",
+        "score":"7"
+      },{
+        "name":"头脑战",
+        "score":"3"
+      },{
+        "name":"协调性",
+        "score":"7"
+      },{
+        "name":"速度",
+        "score":"10"
+      }
+      ],
+      "evaluate": "B+"
+    },
+    {
+      "id": 9,
+      "name": "萨莎·布劳斯",
+      "age": 16,
+      "birth": "01-01",
+      "height": 168,
+      "weight": 55,
+      "survival": 1,
+      "titan": false,
+      "ability": [
+      {
+        "name":"格斗术",
+        "score":"6"
+      },{
+        "name":"行动力",
+        "score":"3"
+      },{
+        "name":"头脑战",
+        "score":"5"
+      },{
+        "name":"协调性",
+        "score":"6"
+      },{
+        "name":"食欲",
+        "score":"10"
+      }
+      ],
+      "evaluate": "B+"
+    },
+    {
+      "id": 10,
+      "name": "尤弥尔",
+      "age": 17,
+      "birth": "01-01",
+      "height": 172,
+      "weight": 63,
+      "survival": 1,
+      "titan": true,
+      "ability": [
+      {
+        "name":"格斗术",
+        "score":"7"
+      },{
+        "name":"行动力",
+        "score":"10"
+      },{
+        "name":"头脑战",
+        "score":"7"
+      },{
+        "name":"协调性",
+        "score":"2"
+      },{
+        "name":"好恶",
+        "score":"10"
+      }
+      ],
+      "evaluate": "B"
+    },
+    {
+      "id": 11,
+      "name": "三毛·扎卡里阿斯",
+      "age": 27,
+      "birth": "01-01",
+      "height": 196,
+      "weight": 102,
+      "survival": 0,
+      "titan": false,
+      "ability": [
+      {
+        "name":"格斗术",
+        "score":"10"
+      },{
+        "name":"行动力",
+        "score":"9"
+      },{
+        "name":"头脑战",
+        "score":"7"
+      },{
+        "name":"协调性",
+        "score":"9"
+      },{
+        "name":"鼻",
+        "score":"10"
+      }
+      ],
+      "evaluate": "C"
     }
   ]
 }
