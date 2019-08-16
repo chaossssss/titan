@@ -59,24 +59,27 @@ export default {
       usersList:[],
       currentPage: 1,
       pageSize: 10,
-      total: 0
+      total: 0,
+      pagePath: ""
     }
   },
   mounted(){
     this.currentPage = 1
     let path = this.$route.path
+    this.pagePath = path
     console.log(path)
     if(path == '/SurveyCorps'){
       this.$get(api.GetPropsList).then((res)=>{
         this.total = res.length
       })
-      this.getList()
+      this.getList(this.pagePath)
     }
   },
   methods: {
     handleClick(row) {
       console.log(row);
-      this.$router.push({path:`SurveyCorps/${row.id}`})
+      let path = this.$route.path.substring(1,pagePath.length)
+      this.$router.push({path:`${path}/${row.id}`})
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
@@ -84,10 +87,11 @@ export default {
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
       this.currentPage = val
-      this.getList()
+      this.getList(this.pagePath)
     },
-    getList(){
-      this.$get(api.GetPropsList,{
+    getList(pagePath){
+      let key = pagePath.substring(1,pagePath.length)
+      this.$get(api[key],{
           _page:this.currentPage,
           _limit:this.pageSize
       }).then((res)=>{
