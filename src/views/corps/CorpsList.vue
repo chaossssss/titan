@@ -68,12 +68,9 @@ export default {
     let path = this.$route.path
     this.pagePath = path
     console.log(path)
-    if(path == '/SurveyCorps'){
-      this.$get(api.GetPropsList).then((res)=>{
-        this.total = res.length
-      })
-      this.getList(this.pagePath)
-    }
+    this.getList(this.pagePath,0)
+    this.getList(this.pagePath,1)
+
   },
   methods: {
     handleClick(row) {
@@ -89,15 +86,49 @@ export default {
       this.currentPage = val
       this.getList(this.pagePath)
     },
-    getList(pagePath){
-      let key = pagePath.substring(1,pagePath.length)
-      this.$get(api[key],{
-          _page:this.currentPage,
-          _limit:this.pageSize
-      }).then((res)=>{
-          console.log(res)
-          this.usersList = res
-      })
+    getList(pagePath,index){
+      if(index == 1){     
+        if(pagePath == "/SurveyCorps") {        
+          this.$get(api.GetSurverCorpsList,{
+              _page:this.currentPage,
+              _limit:this.pageSize
+          }).then((res)=>{
+              console.log(res)
+              this.usersList = res
+          })
+        }else if(pagePath == "/CharterCorps"){
+          this.$get(api.GetCharterCorpsCorpsList,{
+              _page:this.currentPage,
+              _limit:this.pageSize
+          }).then((res)=>{
+              console.log(res)
+              this.usersList = res
+          })
+        }else if(pagePath == "/BeStationedCorps"){
+          this.$get(api.GetBeStationedCorpsList,{
+              _page:this.currentPage,
+              _limit:this.pageSize
+          }).then((res)=>{
+              console.log(res)
+              this.usersList = res
+          })
+        }
+      }else if(index == 0){
+        if(pagePath == "/SurveyCorps") {  
+          this.$get(api.GetSurverCorpsList).then((res)=>{
+            this.total = res.length
+          })
+        }else if(pagePath == "/CharterCorps"){
+          this.$get(api.GetCharterCorpsCorpsList).then((res)=>{
+            this.total = res.length
+          })
+        }else if(pagePath == "/BeStationedCorps"){
+          this.$get(api.GetBeStationedCorpsList).then((res)=>{
+            this.total = res.length
+          })
+        }
+
+      }
     }
   },
 }
