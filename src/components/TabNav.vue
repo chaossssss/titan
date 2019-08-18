@@ -41,12 +41,16 @@ export default {
   methods:{
     checkRouter(){
       let tabs = this.$store.state.router
-      tabs.forEach((tab,index)=>{
-        if(tab.isCurrent == 1){
-          this.editableTabsValue = tab.title
-          this.routerLink = this.$store.state.router
-        }
-      })
+      if(tabs.length == 0){
+        this.$router.push({path:'/'})
+      }else{      
+        tabs.forEach((tab,index)=>{
+          if(tab.isCurrent == 1){
+            this.editableTabsValue = tab.title
+            this.routerLink = this.$store.state.router
+          }
+        })
+      }
     },
     closeTab(e){
       if(e.target.tagName == "SPAN"){
@@ -66,10 +70,13 @@ export default {
       }
     },
     currentTab(tabnav){
+      console.log(tabnav)
       let tabs = this.$store.state.router
       tabs.forEach((tab,index) => {
+        console.log('tab',tab)
         if(tab.title === tabnav.name){
-          this.$store.commit("addRouter",tab.link)
+          tab.isCurrent = 1
+          this.$store.commit("addRouter",tab)
         }
       })
       this.checkRouter()

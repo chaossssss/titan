@@ -33,9 +33,20 @@ export default new Router({
       {
         path:"CharterCorps",
         component: Corps
-      },{
+      },
+      {
+        path:"CharterCorps/:id",
+        name: "CorpsView",
+        component: CorpsView
+      },
+      {
         path:"BeStationedCorps",
         component: Corps
+      },
+      {
+        path:"BeStationedCorps/:id",
+        name: "CorpsView",
+        component: CorpsView
       },{
         path:"OpenInformation",
         component: OpenInformation

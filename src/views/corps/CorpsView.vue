@@ -63,7 +63,7 @@ export default {
   },
   mounted(){
     let userid = this.$route.params.id
-    this.$get(api.GetPropsList,{
+    this.$get(api.GetSurverCorpsList,{
       id: userid
     }).then((res)=>{
         console.log(res)

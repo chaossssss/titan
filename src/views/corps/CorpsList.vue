@@ -63,19 +63,24 @@ export default {
       pagePath: ""
     }
   },
+  watch:{
+    $route(to,from){
+      let path = to.path
+      this.pagePath = path
+      console.log('path',path)
+      this.getList(path,0)
+      this.getList(path,1)
+    }
+  },
   mounted(){
     this.currentPage = 1
-    let path = this.$route.path
-    this.pagePath = path
-    console.log(path)
-    this.getList(this.pagePath,0)
-    this.getList(this.pagePath,1)
-
+    this.getList(this.$route.path,0)
+    this.getList(this.$route.path,1)
   },
   methods: {
     handleClick(row) {
       console.log(row);
-      let path = this.$route.path.substring(1,pagePath.length)
+      let path = this.$route.path.substring(1,this.$route.path.length)
       this.$router.push({path:`${path}/${row.id}`})
     },
     handleSizeChange(val) {
@@ -93,7 +98,7 @@ export default {
               _page:this.currentPage,
               _limit:this.pageSize
           }).then((res)=>{
-              console.log(res)
+              // console.log(res)
               this.usersList = res
           })
         }else if(pagePath == "/CharterCorps"){
@@ -101,7 +106,7 @@ export default {
               _page:this.currentPage,
               _limit:this.pageSize
           }).then((res)=>{
-              console.log(res)
+              // console.log(res)
               this.usersList = res
           })
         }else if(pagePath == "/BeStationedCorps"){
@@ -109,7 +114,7 @@ export default {
               _page:this.currentPage,
               _limit:this.pageSize
           }).then((res)=>{
-              console.log(res)
+              // console.log(res)
               this.usersList = res
           })
         }

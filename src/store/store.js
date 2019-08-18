@@ -36,7 +36,7 @@ export default new Vuex.Store({
       }
 
       let newRouter = uniqueArray(router,"link")
-      // console.log("newRouter",newRouter)
+      console.log("newRouter",newRouter)
       let routerLength = state.router.length;
       state.router.splice(0,routerLength)
       for(let i = 0; i < newRouter.length; i++){
