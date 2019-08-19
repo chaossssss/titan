@@ -18,13 +18,13 @@
       </el-form-item>
       <el-form-item label="生存状况">
         <el-radio-group v-model="form.survival">
-          <el-radio label="存活"></el-radio>
-          <el-radio label="死亡"></el-radio>
-          <el-radio label="未知"></el-radio>
+          <el-radio disabled :label="1">存活</el-radio>
+          <el-radio disabled :label="0">死亡</el-radio>
+          <el-radio disabled :label="2">未知</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="继承巨人">
-        <el-switch v-model="form.titan"></el-switch>
+        <el-switch disabled v-model="form.titan"></el-switch>
       </el-form-item>
       <quill-editor v-model="content"
                     ref="myQuillEditor"
