@@ -28,7 +28,6 @@
       </el-form-item>
       <quill-editor v-model="content"
                     ref="myQuillEditor"
-                    :options="editorOption"
                     @blur="onEditorBlur($event)"
                     @focus="onEditorFocus($event)"
                     @ready="onEditorReady($event)">
@@ -58,23 +57,53 @@ export default {
         weight: '',
         survival: '',
         titan: false,
-      }
+      },
+      content:''
     }
   },
   mounted(){
     let userid = this.$route.params.id
-    this.$get(api.GetSurverCorpsList,{
-      id: userid
-    }).then((res)=>{
-        console.log(res)
-        this.form.name = res[0].name
-        this.form.birth = res[0].birth
-        this.form.height = res[0].height
-        this.form.weight = res[0].weight
-        this.form.survival = res[0].survival
-        this.form.titan = res[0].titan
-        this.initCharts(res)
-    })
+    let path = "/" + this.$route.path.split("/")[1]
+    if(path == "/SurveyCorps"){
+      this.$get(api.GetSurverCorpsList,{
+        id: userid
+      }).then((res)=>{
+          console.log(res)
+          this.form.name = res[0].name
+          this.form.birth = res[0].birth
+          this.form.height = res[0].height
+          this.form.weight = res[0].weight
+          this.form.survival = res[0].survival
+          this.form.titan = res[0].titan
+          this.initCharts(res)
+      })
+    }else if(path == "/CharterCorps"){
+      this.$get(api.GetCharterCorpsList,{
+        id: userid
+      }).then((res)=>{
+          console.log(res)
+          this.form.name = res[0].name
+          this.form.birth = res[0].birth
+          this.form.height = res[0].height
+          this.form.weight = res[0].weight
+          this.form.survival = res[0].survival
+          this.form.titan = res[0].titan
+          this.initCharts(res)
+      })
+    }else if(path == "/BeStationedCorps"){
+      this.$get(api.GetBeStationedCorpsList,{
+        id: userid
+      }).then((res)=>{
+          console.log(res)
+          this.form.name = res[0].name
+          this.form.birth = res[0].birth
+          this.form.height = res[0].height
+          this.form.weight = res[0].weight
+          this.form.survival = res[0].survival
+          this.form.titan = res[0].titan
+          this.initCharts(res)
+      })
+    }
   },
   methods:{
     initCharts(data){

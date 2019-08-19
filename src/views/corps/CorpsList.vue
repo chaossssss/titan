@@ -102,7 +102,7 @@ export default {
               this.usersList = res
           })
         }else if(pagePath == "/CharterCorps"){
-          this.$get(api.GetCharterCorpsCorpsList,{
+          this.$get(api.GetCharterCorpsList,{
               _page:this.currentPage,
               _limit:this.pageSize
           }).then((res)=>{
@@ -124,7 +124,7 @@ export default {
             this.total = res.length
           })
         }else if(pagePath == "/CharterCorps"){
-          this.$get(api.GetCharterCorpsCorpsList).then((res)=>{
+          this.$get(api.GetCharterCorpsList).then((res)=>{
             this.total = res.length
           })
         }else if(pagePath == "/BeStationedCorps"){

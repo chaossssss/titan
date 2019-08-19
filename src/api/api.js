@@ -1,3 +1,3 @@
 export const GetSurverCorpsList = "/SurveyCorps"
-export const GetCharterCorpsCorpsList = "/CharterCorps"
+export const GetCharterCorpsList = "/CharterCorps"
 export const GetBeStationedCorpsList = "/BeStationedCorps"
