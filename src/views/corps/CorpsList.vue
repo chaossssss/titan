@@ -1,5 +1,6 @@
 <template>
   <div>
+    <el-button @click="add(total)" style="margin: 0 0 10px 10px;" type="success" plain><i class="el-icon-circle-plus"></i>新增</el-button>
     <el-table
       :data="usersList"
       border
@@ -134,6 +135,10 @@ export default {
         }
 
       }
+    },
+    add(total){
+      let path = this.$route.path.substring(1,this.$route.path.length)
+      this.$router.push({path:`${path}Add/${total}`})
     }
   },
 }

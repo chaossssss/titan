@@ -11,20 +11,24 @@
       "titan": true,
       "ability": [
         {
-          "name":"格斗术",
-          "score":"9"
-        },{
-          "name":"行动力",
-          "score":"10"
-        },{
-          "name":"头脑战",
-          "score":"7"
-        },{
-          "name":"协调性",
-          "score":"5"
-        },{
-          "name":"热血",
-          "score":"10"
+          "name": "格斗术",
+          "score": "9"
+        },
+        {
+          "name": "行动力",
+          "score": "10"
+        },
+        {
+          "name": "头脑战",
+          "score": "7"
+        },
+        {
+          "name": "协调性",
+          "score": "5"
+        },
+        {
+          "name": "热血",
+          "score": "10"
         }
       ],
       "evaluate": "A"
@@ -39,22 +43,26 @@
       "survival": 1,
       "titan": false,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"10"
-      },{
-        "name":"行动力",
-        "score":"9"
-      },{
-        "name":"头脑战",
-        "score":"8"
-      },{
-        "name":"协调性",
-        "score":"6"
-      },{
-        "name":"关心家人",
-        "score":"10"
-      }
+        {
+          "name": "格斗术",
+          "score": "10"
+        },
+        {
+          "name": "行动力",
+          "score": "9"
+        },
+        {
+          "name": "头脑战",
+          "score": "8"
+        },
+        {
+          "name": "协调性",
+          "score": "6"
+        },
+        {
+          "name": "关心家人",
+          "score": "10"
+        }
       ],
       "evaluate": "A+"
     },
@@ -68,22 +76,26 @@
       "survival": 1,
       "titan": true,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"2"
-      },{
-        "name":"行动力",
-        "score":"6"
-      },{
-        "name":"头脑战",
-        "score":"10"
-      },{
-        "name":"协调性",
-        "score":"8"
-      },{
-        "name":"判断力",
-        "score":"10"
-      }
+        {
+          "name": "格斗术",
+          "score": "2"
+        },
+        {
+          "name": "行动力",
+          "score": "6"
+        },
+        {
+          "name": "头脑战",
+          "score": "10"
+        },
+        {
+          "name": "协调性",
+          "score": "8"
+        },
+        {
+          "name": "判断力",
+          "score": "10"
+        }
       ],
       "evaluate": "A+"
     },
@@ -97,22 +109,26 @@
       "survival": 0,
       "titan": false,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"9"
-      },{
-        "name":"行动力",
-        "score":"10"
-      },{
-        "name":"头脑战",
-        "score":"10"
-      },{
-        "name":"协调性",
-        "score":"7"
-      },{
-        "name":"无情",
-        "score":"10"
-      }
+        {
+          "name": "格斗术",
+          "score": "9"
+        },
+        {
+          "name": "行动力",
+          "score": "10"
+        },
+        {
+          "name": "头脑战",
+          "score": "10"
+        },
+        {
+          "name": "协调性",
+          "score": "7"
+        },
+        {
+          "name": "无情",
+          "score": "10"
+        }
       ],
       "evaluate": "A+"
     },
@@ -126,22 +142,26 @@
       "survival": 1,
       "titan": false,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"11"
-      },{
-        "name":"行动力",
-        "score":"10"
-      },{
-        "name":"头脑战",
-        "score":"8"
-      },{
-        "name":"协调性",
-        "score":"2"
-      },{
-        "name":"洁癖性",
-        "score":"10"
-      }
+        {
+          "name": "格斗术",
+          "score": "11"
+        },
+        {
+          "name": "行动力",
+          "score": "10"
+        },
+        {
+          "name": "头脑战",
+          "score": "8"
+        },
+        {
+          "name": "协调性",
+          "score": "2"
+        },
+        {
+          "name": "洁癖性",
+          "score": "10"
+        }
       ],
       "evaluate": "A++"
     },
@@ -155,22 +175,26 @@
       "survival": 1,
       "titan": false,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"7"
-      },{
-        "name":"行动力",
-        "score":"10"
-      },{
-        "name":"头脑战",
-        "score":"10"
-      },{
-        "name":"协调性",
-        "score":"8"
-      },{
-        "name":"智慧",
-        "score":"11"
-      }
+        {
+          "name": "格斗术",
+          "score": "7"
+        },
+        {
+          "name": "行动力",
+          "score": "10"
+        },
+        {
+          "name": "头脑战",
+          "score": "10"
+        },
+        {
+          "name": "协调性",
+          "score": "8"
+        },
+        {
+          "name": "智慧",
+          "score": "11"
+        }
       ],
       "evaluate": "A+"
     },
@@ -184,22 +208,26 @@
       "survival": 1,
       "titan": false,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"9"
-      },{
-        "name":"行动力",
-        "score":"6"
-      },{
-        "name":"头脑战",
-        "score":"5"
-      },{
-        "name":"协调性",
-        "score":"5"
-      },{
-        "name":"认知力",
-        "score":"10"
-      }
+        {
+          "name": "格斗术",
+          "score": "9"
+        },
+        {
+          "name": "行动力",
+          "score": "6"
+        },
+        {
+          "name": "头脑战",
+          "score": "5"
+        },
+        {
+          "name": "协调性",
+          "score": "5"
+        },
+        {
+          "name": "认知力",
+          "score": "10"
+        }
       ],
       "evaluate": "A"
     },
@@ -213,22 +241,26 @@
       "survival": 1,
       "titan": false,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"6"
-      },{
-        "name":"行动力",
-        "score":"7"
-      },{
-        "name":"头脑战",
-        "score":"3"
-      },{
-        "name":"协调性",
-        "score":"7"
-      },{
-        "name":"速度",
-        "score":"10"
-      }
+        {
+          "name": "格斗术",
+          "score": "6"
+        },
+        {
+          "name": "行动力",
+          "score": "7"
+        },
+        {
+          "name": "头脑战",
+          "score": "3"
+        },
+        {
+          "name": "协调性",
+          "score": "7"
+        },
+        {
+          "name": "速度",
+          "score": "10"
+        }
       ],
       "evaluate": "B+"
     },
@@ -242,22 +274,26 @@
       "survival": 1,
       "titan": false,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"6"
-      },{
-        "name":"行动力",
-        "score":"3"
-      },{
-        "name":"头脑战",
-        "score":"5"
-      },{
-        "name":"协调性",
-        "score":"6"
-      },{
-        "name":"食欲",
-        "score":"10"
-      }
+        {
+          "name": "格斗术",
+          "score": "6"
+        },
+        {
+          "name": "行动力",
+          "score": "3"
+        },
+        {
+          "name": "头脑战",
+          "score": "5"
+        },
+        {
+          "name": "协调性",
+          "score": "6"
+        },
+        {
+          "name": "食欲",
+          "score": "10"
+        }
       ],
       "evaluate": "B+"
     },
@@ -271,22 +307,26 @@
       "survival": 1,
       "titan": true,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"7"
-      },{
-        "name":"行动力",
-        "score":"10"
-      },{
-        "name":"头脑战",
-        "score":"7"
-      },{
-        "name":"协调性",
-        "score":"2"
-      },{
-        "name":"好恶",
-        "score":"10"
-      }
+        {
+          "name": "格斗术",
+          "score": "7"
+        },
+        {
+          "name": "行动力",
+          "score": "10"
+        },
+        {
+          "name": "头脑战",
+          "score": "7"
+        },
+        {
+          "name": "协调性",
+          "score": "2"
+        },
+        {
+          "name": "好恶",
+          "score": "10"
+        }
       ],
       "evaluate": "B"
     },
@@ -300,22 +340,26 @@
       "survival": 0,
       "titan": false,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"10"
-      },{
-        "name":"行动力",
-        "score":"9"
-      },{
-        "name":"头脑战",
-        "score":"7"
-      },{
-        "name":"协调性",
-        "score":"9"
-      },{
-        "name":"鼻",
-        "score":"10"
-      }
+        {
+          "name": "格斗术",
+          "score": "10"
+        },
+        {
+          "name": "行动力",
+          "score": "9"
+        },
+        {
+          "name": "头脑战",
+          "score": "7"
+        },
+        {
+          "name": "协调性",
+          "score": "9"
+        },
+        {
+          "name": "鼻",
+          "score": "10"
+        }
       ],
       "evaluate": "C"
     }
@@ -332,20 +376,24 @@
       "titan": false,
       "ability": [
         {
-          "name":"格斗术",
-          "score":"6"
-        },{
-          "name":"行动力",
-          "score":"4"
-        },{
-          "name":"头脑战",
-          "score":"6"
-        },{
-          "name":"协调性",
-          "score":"8"
-        },{
-          "name":"冷酷",
-          "score":"10"
+          "name": "格斗术",
+          "score": "6"
+        },
+        {
+          "name": "行动力",
+          "score": "4"
+        },
+        {
+          "name": "头脑战",
+          "score": "6"
+        },
+        {
+          "name": "协调性",
+          "score": "8"
+        },
+        {
+          "name": "冷酷",
+          "score": "10"
         }
       ],
       "evaluate": "D"
@@ -360,22 +408,26 @@
       "survival": 1,
       "titan": false,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"8"
-      },{
-        "name":"行动力",
-        "score":"8"
-      },{
-        "name":"头脑战",
-        "score":"7"
-      },{
-        "name":"协调性",
-        "score":"8"
-      },{
-        "name":"热情的决意",
-        "score":"9"
-      }
+        {
+          "name": "格斗术",
+          "score": "8"
+        },
+        {
+          "name": "行动力",
+          "score": "8"
+        },
+        {
+          "name": "头脑战",
+          "score": "7"
+        },
+        {
+          "name": "协调性",
+          "score": "8"
+        },
+        {
+          "name": "热情的决意",
+          "score": "9"
+        }
       ],
       "evaluate": "B+"
     },
@@ -389,22 +441,26 @@
       "survival": 1,
       "titan": true,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"8"
-      },{
-        "name":"行动力",
-        "score":"7"
-      },{
-        "name":"头脑战",
-        "score":"7"
-      },{
-        "name":"协调性",
-        "score":"5"
-      },{
-        "name":"事不关己",
-        "score":"9"
-      }
+        {
+          "name": "格斗术",
+          "score": "8"
+        },
+        {
+          "name": "行动力",
+          "score": "7"
+        },
+        {
+          "name": "头脑战",
+          "score": "7"
+        },
+        {
+          "name": "协调性",
+          "score": "5"
+        },
+        {
+          "name": "事不关己",
+          "score": "9"
+        }
       ],
       "evaluate": "C+"
     }
@@ -421,20 +477,24 @@
       "titan": false,
       "ability": [
         {
-          "name":"灵活性",
-          "score":"10"
-        },{
-          "name":"行动力",
-          "score":"10"
-        },{
-          "name":"对王的忠诚",
-          "score":"10"
-        },{
-          "name":"雷子部下的信赖",
-          "score":"10"
-        },{
-          "name":"演说",
-          "score":"11"
+          "name": "灵活性",
+          "score": "10"
+        },
+        {
+          "name": "行动力",
+          "score": "10"
+        },
+        {
+          "name": "对王的忠诚",
+          "score": "10"
+        },
+        {
+          "name": "雷子部下的信赖",
+          "score": "10"
+        },
+        {
+          "name": "演说",
+          "score": "11"
         }
       ],
       "evaluate": "A"
@@ -449,22 +509,26 @@
       "survival": 1,
       "titan": false,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"7"
-      },{
-        "name":"行动力",
-        "score":"8"
-      },{
-        "name":"头脑战",
-        "score":"6"
-      },{
-        "name":"协调性",
-        "score":"9"
-      },{
-        "name":"好酒",
-        "score":"8"
-      }
+        {
+          "name": "格斗术",
+          "score": "7"
+        },
+        {
+          "name": "行动力",
+          "score": "8"
+        },
+        {
+          "name": "头脑战",
+          "score": "6"
+        },
+        {
+          "name": "协调性",
+          "score": "9"
+        },
+        {
+          "name": "好酒",
+          "score": "8"
+        }
       ],
       "evaluate": "B+"
     },
@@ -478,22 +542,26 @@
       "survival": 1,
       "titan": true,
       "ability": [
-      {
-        "name":"格斗术",
-        "score":"10"
-      },{
-        "name":"行动力",
-        "score":"9"
-      },{
-        "name":"头脑战",
-        "score":"8"
-      },{
-        "name":"协调性",
-        "score":"10"
-      },{
-        "name":"觉悟",
-        "score":"11"
-      }
+        {
+          "name": "格斗术",
+          "score": "10"
+        },
+        {
+          "name": "行动力",
+          "score": "9"
+        },
+        {
+          "name": "头脑战",
+          "score": "8"
+        },
+        {
+          "name": "协调性",
+          "score": "10"
+        },
+        {
+          "name": "觉悟",
+          "score": "11"
+        }
       ],
       "evaluate": "A+"
     }

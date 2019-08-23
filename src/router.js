@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Corps from './views/corps/Corps.vue'
 import CorpsView from './views/corps/CorpsView'
+import CorpsAdd from './views/corps/CorpsAdd'
 import OpenInformation from './views/OpenInformation'
 import War from './views/War'
 import Gas from './views/material/Gas'
@@ -29,6 +30,11 @@ export default new Router({
         path:"SurveyCorps/:id",
         name: "CorpsView",
         component: CorpsView
+      },
+      {
+        path:"/SurveyCorpsAdd/:total",
+        name: "CorpsAdd",
+        component: CorpsAdd
       },
       {
         path:"CharterCorps",
