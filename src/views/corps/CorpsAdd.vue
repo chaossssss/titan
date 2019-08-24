@@ -80,15 +80,7 @@ export default {
     }
   },
   mounted(){
-    let userid = this.$route.params.id
-    let path = "/" + this.$route.path.split("/")[1]
-    if(path == "/SurveyCorps"){
 
-    }else if(path == "/CharterCorps"){
-
-    }else if(path == "/BeStationedCorps"){
-
-    }
   },
   methods:{
     onEditorBlur(quill) {

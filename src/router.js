@@ -5,6 +5,7 @@ import Login from './views/Login.vue'
 import Corps from './views/corps/Corps.vue'
 import CorpsView from './views/corps/CorpsView'
 import CorpsAdd from './views/corps/CorpsAdd'
+import CorpsEdit from './views/corps/CorpsEdit'
 import OpenInformation from './views/OpenInformation'
 import War from './views/War'
 import Gas from './views/material/Gas'
@@ -37,6 +38,11 @@ export default new Router({
         component: CorpsAdd
       },
       {
+        path:"/SurveyCorpsEdit/:id",
+        name: "CorpsEdit",
+        component: CorpsEdit
+      },
+      {
         path:"CharterCorps",
         component: Corps
       },
@@ -46,6 +52,16 @@ export default new Router({
         component: CorpsView
       },
       {
+        path:"/CharterCorpsAdd/:total",
+        name: "CorpsAdd",
+        component: CorpsAdd
+      },
+      {
+        path:"/CharterCorpsEdit/:id",
+        name: "CorpsEdit",
+        component: CorpsEdit
+      },
+      {
         path:"BeStationedCorps",
         component: Corps
       },
@@ -53,7 +69,18 @@ export default new Router({
         path:"BeStationedCorps/:id",
         name: "CorpsView",
         component: CorpsView
-      },{
+      },
+      {
+        path:"/BeStationedCorpsAdd/:total",
+        name: "CorpsAdd",
+        component: CorpsAdd
+      },
+      {
+        path:"/BeStationedCorpsEdit/:id",
+        name: "CorpsEdit",
+        component: CorpsEdit
+      },
+      {
         path:"OpenInformation",
         component: OpenInformation
       },{
