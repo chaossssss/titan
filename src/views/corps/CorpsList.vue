@@ -141,7 +141,29 @@ export default {
       this.$router.push({path:`${path}Add/${total}`})
     },
     eidt(row){
+      let path = this.$route.path.substring(1,this.$route.path.length)
+      this.$router.push({path:`${path}Edit/${row.id}`})
+    },
+    del(row){
+      if(this.pagePath == "/SurveyCorps") {        
+        this.$del(api.GetSurverCorpsList,{
+            id:row.id,
+        }).then((res)=>{
 
+        })
+      }else if(this.pagePath == "/CharterCorps"){
+        this.$del(api.GetCharterCorpsList,{
+            id:row.id,
+        }).then((res)=>{
+
+        })
+      }else if(this.pagePath == "/BeStationedCorps"){
+        this.$del(api.GetBeStationedCorpsList,{
+            id:row.id,
+        }).then((res)=>{
+
+        })
+      }
     }
   },
 }

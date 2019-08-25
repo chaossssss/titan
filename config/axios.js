@@ -54,7 +54,7 @@ export function fetch(url,params={}){
  }
 
 
-export function delete(url,params={}){
+export function del(url,params={}){
     return new Promise((resolve,reject) => {
       axios.delete(url,{
         params:params
