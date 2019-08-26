@@ -26,20 +26,33 @@
       <el-form-item label="继承巨人">
         <el-switch disabled v-model="form.titan"></el-switch>
       </el-form-item>
-      <quill-editor v-model="content"
+<!--       <quill-editor v-model="content"
                     ref="myQuillEditor"
                     @blur="onEditorBlur($event)"
                     @focus="onEditorFocus($event)"
                     @ready="onEditorReady($event)">
-      </quill-editor>
+      </quill-editor> -->
       <el-form-item>
-        <el-button type="primary">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button @click="onSubmit()" type="primary">提交</el-button>
       </el-form-item>
     </el-form>
   </el-col>
   <el-col :span="10">
-  <div style="width:500px;height:500px;" ref="radar"></div>
+    <el-form-item label="格斗术">
+      <el-input v-model="ability1"></el-input>
+    </el-form-item>
+    <el-form-item label="行动力">
+      <el-input v-model="ability2"></el-input>
+    </el-form-item>
+    <el-form-item label="头脑战">
+      <el-input v-model="ability3"></el-input>
+    </el-form-item>
+    <el-form-item label="协调性">
+      <el-input v-model="ability4"></el-input>
+    </el-form-item>
+    <el-form-item label="无情">
+      <el-input v-model="ability5"></el-input>
+    </el-form-item>
   </el-col>
 </el-row>
 </template>
@@ -58,7 +71,12 @@ export default {
         survival: '',
         titan: false,
       },
-      content:''
+      content:'',
+      ability1:'',
+      ability2:'',
+      ability3:'',
+      ability4:'',
+      ability5:'',
     }
   },
   mounted(){
@@ -75,7 +93,6 @@ export default {
           this.form.weight = res[0].weight
           this.form.survival = res[0].survival
           this.form.titan = res[0].titan
-          this.initCharts(res)
       })
     }else if(path == "/CharterCorps"){
       this.$get(api.GetCharterCorpsList,{
@@ -88,7 +105,6 @@ export default {
           this.form.weight = res[0].weight
           this.form.survival = res[0].survival
           this.form.titan = res[0].titan
-          this.initCharts(res)
       })
     }else if(path == "/BeStationedCorps"){
       this.$get(api.GetBeStationedCorpsList,{
@@ -101,57 +117,10 @@ export default {
           this.form.weight = res[0].weight
           this.form.survival = res[0].survival
           this.form.titan = res[0].titan
-          this.initCharts(res)
       })
     }
   },
   methods:{
-    initCharts(data){
-      let radar = this.$echarts.init(this.$refs.radar)
-      let abilitys = data[0].ability
-      let abilityName = [],abilityValue = []
-      for(let k in abilitys){
-        let json = {}
-        json.name = abilitys[k].name
-        json.max = 12
-        abilityName.push(json)
-        abilityValue.push(abilitys[k].score)
-      }
-      console.log(abilityName,abilityValue)
-      let option = {
-          title: {
-              text: '公式书数据'
-          },
-          tooltip: {},
-          legend: {
-              data: [data[0].name]
-          },
-          radar: {
-              // shape: 'circle',
-              name: {
-                  textStyle: {
-                      color: '#fff',
-                      backgroundColor: '#999',
-                      borderRadius: 3,
-                      padding: [3, 5]
-                 }
-              },
-              indicator: abilityName
-          },
-          series: [{
-              name: '五星图',
-              type: 'radar',
-              // areaStyle: {normal: {}},
-              data : [
-                  {
-                      value : abilityValue,
-                      name : data[0].name
-                  }
-              ]
-          }]
-      };
-      radar.setOption(option)
-    },
     onEditorBlur(quill) {
       console.log('editor blur!', quill)
     },
@@ -164,6 +133,50 @@ export default {
     onEditorChange({ quill, html, text }) {
       console.log('editor change!', quill, html, text)
       this.content = html
+    },
+    onSubmit(){
+      let submitData = this.form;
+      let userid = this.$route.params.total
+      submitData.id = parseInt(userid) + 1
+      submitData.ability = [
+      {
+        "name":"格斗术",
+        "score":this.ability1
+      },
+      {
+        "name":"行动力",
+        "score":this.ability2
+      },
+      {
+        "name":"头脑战",
+        "score":this.ability3
+      },
+      {
+        "name":"协调性",
+        "score":this.ability4
+      },
+      {
+        "name":"无情",
+        "score":this.ability5
+      }
+      ]
+      
+      let pagePath = this.$route.path.split("/")[1]
+      let data = submitData
+      console.log(data)
+      if(pagePath == "SurveyCorpsAdd") {  
+        this.$patch(api.GetSurverCorpsList,data).then(res=>{
+          
+        })
+      }else if(pagePath == "CharterCorpsAdd"){
+        this.$patch(api.GetCharterCorpsList,data).then(res=>{
+
+        })
+      }else if(pagePath == "BeStationedCorpsAdd"){
+        this.$patch(api.GetBeStationedCorpsList,data).then(res=>{
+
+        })
+      }
     }
   }
 }

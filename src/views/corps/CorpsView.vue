@@ -26,12 +26,12 @@
       <el-form-item label="继承巨人">
         <el-switch disabled v-model="form.titan"></el-switch>
       </el-form-item>
-      <quill-editor v-model="content"
+<!--       <quill-editor v-model="content"
                     ref="myQuillEditor"
                     @blur="onEditorBlur($event)"
                     @focus="onEditorFocus($event)"
                     @ready="onEditorReady($event)">
-      </quill-editor>
+      </quill-editor> -->
       <el-form-item>
         <el-button type="primary">立即创建</el-button>
         <el-button>取消</el-button>
