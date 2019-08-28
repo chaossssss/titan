@@ -12,6 +12,11 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 Vue.use(VueQuillEditor)
+
+import VueImageSwipe from 'vue-image-swipe'
+import 'vue-image-swipe/dist/vue-image-swipe.css'
+Vue.use(VueImageSwipe)
+
 import {
   Pagination,
   Dialog,
