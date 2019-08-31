@@ -8,11 +8,8 @@ import CorpsAdd from './views/corps/CorpsAdd'
 import CorpsEdit from './views/corps/CorpsEdit'
 import OpenInformation from './views/OpenInformation'
 import War from './views/War'
-import Gas from './views/material/Gas'
-import Blade from './views/material/Blade'
-import MobileDevice from './views/material/MobileDevice'
-import Horse from './views/material/Horse'
-import Gun from './views/material/Gun'
+import Material from './views/material/Material'
+
 Vue.use(Router)
 
 export default new Router({
@@ -87,20 +84,8 @@ export default new Router({
         path:"War",
         component: War
       },{
-        path:"Gas",
-        component: Gas
-      },{
-        path:"Blade",
-        component: Blade
-      },{
-        path:"MobileDevice",
-        component: MobileDevice
-      },{
-        path:"Horse",
-        component: Horse
-      },{
-        path:"Gun",
-        component: Gun
+        path:"Material",
+        component: Material
       }]
     },
     {

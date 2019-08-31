@@ -64,26 +64,11 @@ export default {
         icon: "el-icon-menu",
         subitem:[]
       },{
-        hasSub:1,
+        hasSub:0,
         title:"物资情况",
         link:"/Material",
         icon: "el-icon-sort",
-        subitem:[{
-          title:"瓦斯",
-          sublink:"/Gas"
-        },{
-          title:"刀片",
-          sublink:"/Blade"
-        },{
-          title:"机动装置",
-          sublink:"/MobileDevice"
-        },{
-          title:"马匹",
-          sublink:"/Horse"
-        },{
-          title:"雷枪",
-          sublink:"/Gun"
-        }]
+        subitem:[]
       }],
     }
   },
