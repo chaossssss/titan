@@ -18,6 +18,10 @@
 	    <el-main>
 				<TabNav/>
 	    	<router-view/>
+	    	<div v-if="$route.path == '/'" style="width:800px;padding-left:40px;">
+	    	  <span>那一天，人类终于回想起了曾一度被它们所支配的恐怖和被囚禁于鸟笼中的那份屈辱。</span>
+	    	  <el-divider content-position="right">《进击的巨人》</el-divider>
+	    	</div>
 	    </el-main>
 	  </el-container>
 	</el-container>
@@ -60,7 +64,8 @@ export default {
   	return{
   		circleUrl: HighLevelPic,
   		size: "large",
-  		picfit: "fill"
+  		picfit: "fill",
+  		isHome: true
   	}
   },
   components: {
