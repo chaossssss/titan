@@ -1,4 +1,4 @@
-import Vue from 'vue'
+﻿import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
@@ -12,7 +12,7 @@ import Material from './views/material/Material'
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -20,6 +20,7 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
+      meta: { auth: true },
       children:[{
         path:"SurveyCorps",
         component: Corps,
@@ -95,6 +96,35 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "about" */ './views/Login.vue')
     }
   ]
 })
+router.beforeEach((to, from, next) => {
+  console.log(to)
+  if(to.matched.some( m => m.meta.auth)) {
+    if (to.path === '/login') {
+      next();
+    } else {
+      let token = localStorage.getItem('Authorization');
+      console.log(33333333)
+      if (token === 'null' || token === '') {
+        next('/login');
+      } else {
+        next();
+      }
+    }
+  }else{
+    console.log("请登陆");
+    next()
+  }
+})
+
+export default router;

@@ -12,6 +12,8 @@
 				  </el-form-item>
 				  <el-form-item>
 				    <el-button type="primary" @click="onSubmit">登录</el-button>
+				    <div class="tip">普通账号:admin密码:123</div>
+				    <div class="tip">高级账号:levi密码:123</div>
 				  </el-form-item>
 				</el-form>
 			</div>
@@ -34,7 +36,14 @@
 	  },
 	  methods: {
 	  	onSubmit(){
-
+	  		if(this.form.name != 'admin' && this.form.password != '123'){
+				this.$message.error('账号或密码错误');
+	  		}else{
+	  			this.$store.commit('changeLogin',{
+	  				"Authorization":"OK"
+	  			})
+	  			this.$router.push({ path: '/' })
+	  		}
 	  	},
 	  }
 	}
@@ -62,6 +71,9 @@
 				border-radius: 10px;
 				padding: 40px 60px 10px 20px;
 			}
+		}
+		.tip{
+			color: #ccc;
 		}
 	}
 </style>

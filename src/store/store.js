@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-  	router:[]
+  	router:[],
+    Authorization: localStorage.getItem('Authorization') ? localStorage.getItem('Authorization') : ''
   },
   mutations: {
     getRouter(state,str){
@@ -65,6 +66,10 @@ export default new Vuex.Store({
         }
       }
       // console.log("delRouter:",)
+    },
+    changeLogin (state, user) {
+      state.Authorization = user.Authorization;
+      localStorage.setItem('Authorization', user.Authorization);
     }
   },
   actions: {

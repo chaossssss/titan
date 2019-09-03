@@ -1,4 +1,4 @@
-import Vue from 'vue'
+﻿import Vue from 'vue'
 import './plugins/axios'
 import App from './App.vue'
 import './plugins/element.js'
@@ -190,6 +190,9 @@ Vue.prototype.$message = Message;
 
 
 Vue.config.productionTip = false
+
+
+
 
 new Vue({
   router,

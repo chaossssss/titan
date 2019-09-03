@@ -19,8 +19,15 @@
 				<TabNav/>
 	    	<router-view/>
 	    	<div v-if="$route.path == '/'" style="width:800px;padding-left:40px;">
-	    	  <span>那一天，人类终于回想起了曾一度被它们所支配的恐怖和被囚禁于鸟笼中的那份屈辱。</span>
-	    	  <el-divider content-position="right">《进击的巨人》</el-divider>
+	    		<el-carousel :interval="4000" type="card" height="200px" style="overflow-y:hidden;">
+	    		  <el-carousel-item v-for="item in gifs" :key="item" style="width:500px;">
+		    		  <img :src="item">
+	    		  </el-carousel-item>
+	    		</el-carousel>
+	    		<div>
+		    	  <span>那一天，人类终于回想起了曾一度被它们所支配的恐怖和被囚禁于鸟笼中的那份屈辱。</span>
+		    	  <el-divider content-position="right">《进击的巨人》</el-divider>
+	    		</div>
 	    	</div>
 	    </el-main>
 	  </el-container>
@@ -52,12 +59,17 @@
 	.avatar-box {
 		text-align: right;
 	}
+
+
 </style>
 <script>
 import SlideMenu from "@/components/SlideMenu.vue"
 import TabNav from "@/components/TabNav.vue"
 import NowTime from "@/components/NowTime.vue"
 import HighLevelPic from "../static/images/avatar.jpg"
+import gif1 from "../static/images/gif1.gif"
+import gif4 from "../static/images/gif4.gif"
+import gif5 from "../static/images/gif5.gif"
 export default {
   name: 'home',
   data(){
@@ -65,7 +77,7 @@ export default {
   		circleUrl: HighLevelPic,
   		size: "large",
   		picfit: "fill",
-  		isHome: true
+  		gifs:[gif1,gif4,gif5]
   	}
   },
   components: {
