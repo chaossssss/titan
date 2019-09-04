@@ -114,9 +114,9 @@ router.beforeEach((to, from, next) => {
       next();
     } else {
       let token = localStorage.getItem('Authorization');
-      console.log(33333333)
-      if (token === 'null' || token === '') {
-        next('/login');
+      console.log(token)
+      if (token == null || token == '') {
+        next({path:'/login',query:{Rurl: to.fullPath}});
       } else {
         next();
       }
