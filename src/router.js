@@ -107,6 +107,11 @@ const router =  new Router({
     }
   ]
 })
+export const asyncRouterMap = [
+{
+  path:'/HighInfo',
+  component:() => import('./views/HighInfo.vue')
+}]
 router.beforeEach((to, from, next) => {
   console.log(to)
   if(to.matched.some( m => m.meta.auth)) {
