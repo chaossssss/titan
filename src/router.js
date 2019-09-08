@@ -107,11 +107,19 @@ const router =  new Router({
     }
   ]
 })
-const asyncRouterMap = [
-{
-  path:'/HighInfo',
-  component:() => import('./views/HighInfo.vue')
+const asyncRouterMap = [{
+  path: '/',
+  name: 'Home',
+  component: resolve => require(['@/views/Home'],resolve),
+  meta: { auth: true },
+  children:[{
+    path:'HighInfo',
+    name:'HighInfo',
+    component:() => import('./views/HighInfo.vue')
+  }]
 }]
+
+
 router.addRoutes(asyncRouterMap)
 
 router.beforeEach((to, from, next) => {
