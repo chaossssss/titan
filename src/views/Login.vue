@@ -36,11 +36,14 @@
 	  },
 	  methods: {
 	  	onSubmit(){
-	  		if(this.form.name != 'admin' && this.form.password != '123'){
+	  		let that = this
+	  		if((this.form.name != 'admin' || this.form.name != 'levi') && this.form.password != '123'){
 				this.$message.error('账号或密码错误');
 	  		}else{
+	  			console.log(this.form.name)
 	  			this.$store.commit('changeLogin',{
-	  				"Authorization":"OK"
+	  				"Authorization":"OK",
+	  				"name":that.form.name
 	  			})
 	  			this.$router.push({ path: '/' })
 	  		}

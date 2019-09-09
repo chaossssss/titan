@@ -120,10 +120,10 @@ const asyncRouterMap = [{
 }]
 
 
-router.addRoutes(asyncRouterMap)
+
 
 router.beforeEach((to, from, next) => {
-  console.log(to)
+  router.addRoutes(asyncRouterMap)
   if(to.matched.some( m => m.meta.auth)) {
     if (to.path === '/login') {
       next();

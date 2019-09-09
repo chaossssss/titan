@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
   	router:[],
-    Authorization: localStorage.getItem('Authorization') ? localStorage.getItem('Authorization') : ''
+    Authorization: localStorage.getItem('Authorization') ? localStorage.getItem('Authorization') : '',
+    level: localStorage.getItem('level') ? localStorage.getItem('level') : 0,
   },
   mutations: {
     getRouter(state,str){
@@ -68,8 +69,16 @@ export default new Vuex.Store({
       // console.log("delRouter:",)
     },
     changeLogin (state, user) {
+      console.log(user)
       state.Authorization = user.Authorization;
       localStorage.setItem('Authorization', user.Authorization);
+      if(user.name == 'admin'){
+        localStorage.setItem('level', 1);
+        state.level = 1
+      }else if(user.name == 'levi'){
+        localStorage.setItem('level', 2);
+        state.level = 2
+      }
     }
   },
   actions: {

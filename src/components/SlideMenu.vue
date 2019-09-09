@@ -72,6 +72,9 @@ export default {
       }],
     }
   },
+  mounted(){
+    console.log(this.$store.state.level)
+  },
   methods:{
     getIndex(index){
       let router = {},routerList = this.routerList
