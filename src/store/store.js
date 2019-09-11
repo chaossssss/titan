@@ -8,6 +8,7 @@ export default new Vuex.Store({
   	router:[],
     Authorization: localStorage.getItem('Authorization') ? localStorage.getItem('Authorization') : '',
     level: localStorage.getItem('level') ? localStorage.getItem('level') : 0,
+    slideMenu: []
   },
   mutations: {
     getRouter(state,str){
@@ -75,9 +76,85 @@ export default new Vuex.Store({
       if(user.name == 'admin'){
         localStorage.setItem('level', 1);
         state.level = 1
+        var slideMenu = [{
+          hasSub:1,
+          title:"兵团详情",
+          link:"/Corps",
+          icon: "el-icon-tickets",
+          subitem:[{
+            title:"调查兵团",
+            sublink:"/SurveyCorps"
+          },{
+            title:"宪兵团",
+            sublink:"/CharterCorps"
+          },{
+            title:"驻扎兵团",
+            sublink:"/BeStationedCorps"
+          }]
+        },{
+          hasSub:0,
+          title:"公开情报",
+          link:"/OpenInformation",
+          icon: "el-icon-info",
+          subitem:[]
+        },{
+          hasSub:0,
+          title:"战役信息",
+          link:"/War",
+          icon: "el-icon-menu",
+          subitem:[]
+        },{
+          hasSub:0,
+          title:"物资情况",
+          link:"/Material",
+          icon: "el-icon-sort",
+          subitem:[]
+        }]
+        state.slideMenu = slideMenu
       }else if(user.name == 'levi'){
         localStorage.setItem('level', 2);
         state.level = 2
+        var slideMenu = [{
+          hasSub:1,
+          title:"兵团详情",
+          link:"/Corps",
+          icon: "el-icon-tickets",
+          subitem:[{
+            title:"调查兵团",
+            sublink:"/SurveyCorps"
+          },{
+            title:"宪兵团",
+            sublink:"/CharterCorps"
+          },{
+            title:"驻扎兵团",
+            sublink:"/BeStationedCorps"
+          }]
+        },{
+          hasSub:0,
+          title:"公开情报",
+          link:"/OpenInformation",
+          icon: "el-icon-info",
+          subitem:[]
+        },{
+          hasSub:0,
+          title:"战役信息",
+          link:"/War",
+          icon: "el-icon-menu",
+          subitem:[]
+        },{
+          hasSub:0,
+          title:"物资情况",
+          link:"/Material",
+          icon: "el-icon-sort",
+          subitem:[]
+        },{
+          hasSub:0,
+          title:"高级情报",
+          link:"/HighInfo",
+          icon: "el-icon-info",
+          subitem:[]
+        }]
+        state.slideMenu = slideMenu
       }
     }
   },
