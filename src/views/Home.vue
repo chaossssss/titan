@@ -7,10 +7,11 @@
 	    <el-header>
 	    	<NowTime/>
 				<el-row class="avatar-box">
-		      <el-dropdown size="small">
+		      <el-dropdown size="small" @command="handleCommand">
 			      <el-avatar :size="size" :fit="picfit" :src="circleUrl" style="margin-top:8px;"></el-avatar>
 		        <el-dropdown-menu slot="dropdown">
-		          <el-dropdown-item>Levi</el-dropdown-item>
+		          <el-dropdown-item command="user">{{userName}}</el-dropdown-item>
+		          <el-dropdown-item command="logout">退出</el-dropdown-item>
 		        </el-dropdown-menu>
 		      </el-dropdown>
 				</el-row>
@@ -77,13 +78,24 @@ export default {
   		circleUrl: HighLevelPic,
   		size: "large",
   		picfit: "fill",
-  		gifs:[gif1,gif4,gif5]
+  		gifs:[gif1,gif4,gif5],
+  		userName: 'Levi'
   	}
   },
   components: {
 		SlideMenu,
 		TabNav,
 		NowTime
+  },
+  methods:{
+  	handleCommand(command) {
+  	  // this.$message('click on item ' + command);
+  	  if(command == "logout"){
+  	  	localStorage.removeItem('level');
+  	  	localStorage.removeItem('Authorization');
+  	  	this.$router.push('/login')
+  	  }
+  	}
   }
 }
 </script>
