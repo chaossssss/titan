@@ -6,9 +6,9 @@ const app = express();
 app.use(bodyParser.json())//json请求
 app.use(bodyParser.urlencoded({extended:false}));//表单请求
 app.use(cors());
-app.listen(5000, ()=>{
+app.listen(3000, ()=>{
     // 打印一下
-    console.log('http://127.0.0.1:5000')
+    console.log('http://127.0.0.1:3000')
 }) ;//创建服务器
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
@@ -22,6 +22,7 @@ connection.connect();
 
 app.get('/GetSurveyCorpsList',(req,res) => {
     // 定义SQL语句
+    console.log('请求内容',req.query);
     const sqlStr = 'select * from surveycorps'
     connection.query(sqlStr,(err,results) => {
         

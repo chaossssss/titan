@@ -76,8 +76,9 @@ export default {
   },
   mounted(){
     this.currentPage = 1
-    this.getList(this.$route.path,0)
-    this.getList(this.$route.path,1)
+    // this.getList(this.$route.path,0)
+    // this.getList(this.$route.path,1)
+    this.getPropsList()
   },
   methods: {
     handleClick(row) {
@@ -136,6 +137,13 @@ export default {
         }
 
       }
+    },
+    getPropsList(){
+      this.$get('/GetSurveyCorpsList',{
+        page:1
+      }).then((res)=>{
+        console.log(res)
+      })
     },
     add(total){
       let path = this.$route.path.substring(1,this.$route.path.length)
