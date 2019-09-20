@@ -37,6 +37,21 @@ app.get('/GetSurveyCorpsList',(req,res) => {
         
     })
 })
+app.get('/AddSurveyCorps',(req,res) => {
+	var response = {
+		"name":req.query.name,
+		"age":req.query.age,
+		"birth":req.query.birth,
+		"height":req.query.height,
+		"weight":req.query.weight,
+		"survival":req.query.survival,
+		"titan":req.query.titan,
+		"ability":req.query.ability,
+		"evaluate":req.query.evaluate,
+		"filePath":req.query.filePath
+	}
+	var addSql = 'INSERT INTO suveycorps(name,age,birth,height,weight,survival,titan,ability,evaluate,filePath) values(?,?,?,?,?,?,?,?,?,?)'
+})	var addSqlParams = []
 function Result({code=1,msg='',data={}}){
     this.code=code;
     this.msg=msg;
