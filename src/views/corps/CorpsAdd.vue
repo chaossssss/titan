@@ -147,9 +147,23 @@ export default {
       let pagePath = this.$route.path.split("/")[1]
       let data = submitData
       console.log(data)
-      if(pagePath == "SurveyCorpsAdd") {  
-        this.$post(api.GetSurverCorpsList,data).then(res=>{
+      // json-server
+      // if(pagePath == "SurveyCorpsAdd") {  
+      //   this.$post(api.GetSurverCorpsList,data).then(res=>{
           
+      //   })
+      // }else if(pagePath == "CharterCorpsAdd"){
+      //   this.$post(api.GetCharterCorpsList,data).then(res=>{
+
+      //   })
+      // }else if(pagePath == "BeStationedCorpsAdd"){
+      //   this.$post(api.GetBeStationedCorpsList,data).then(res=>{
+
+      //   })
+      // }
+      if(pagePath == "SurveyCorpsAdd") {  
+        this.$get("/AddSurveyCorps",data).then(res=>{
+          console.log(res)
         })
       }else if(pagePath == "CharterCorpsAdd"){
         this.$post(api.GetCharterCorpsList,data).then(res=>{

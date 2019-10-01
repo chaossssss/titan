@@ -6,10 +6,25 @@ const router=express.Router();
 const fs=require('fs');
 const path=require('path');
 const app = express();
+
 app.use(express.static(__dirname + "./uploads"));
 app.use(bodyParser.json())//json请求
 app.use(bodyParser.urlencoded({extended:false}));//表单请求
 app.use(cors());
+app.use(function(req, res, next) { 
+  res.header("Access-Control-Allow-Origin", "*"); 
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+//设置允许跨域访问该服务.
+app.all('*', function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  //Access-Control-Allow-Headers ,可根据浏览器的F12查看,把对应的粘贴在这里就行
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Methods', '*');
+  res.header('Content-Type', 'application/json;charset=utf-8');
+  next();
+});
 app.listen(3000, ()=>{
     // 打印一下
     console.log('http://127.0.0.1:3000')
@@ -38,7 +53,26 @@ app.get('/GetSurveyCorpsList',(req,res) => {
     })
 })
 app.get('/AddSurveyCorps',(req,res) => {
+	// var form = new formidable.IncomingForm();
+	// form.encoding = 'utf-8';
+	console.log('1111')
+	// var response = {
+	// 	"name":req.query.name,
+	// 	"age":req.query.age,
+	// 	"birth":req.query.birth,
+	// 	"height":req.query.height,
+	// 	"weight":req.query.weight,
+	// 	"survival":req.query.survival,
+	// 	"titan":req.query.titan,
+	// 	"ability":req.query.ability,
+	// 	"evaluate":req.query.evaluate,
+	// 	"filePath":req.query.filePath
+	// }
+	// var addSql = 'INSERT INTO suveycorps(name,age,birth,height,weight,survival,titan,ability,evaluate,filePath) values(?,?,?,?,?,?,?,?,?,?)'
+})
+app.get('/UpdateSurveyCorps',(req,res) => {
 	var response = {
+		"id":req.query.id,
 		"name":req.query.name,
 		"age":req.query.age,
 		"birth":req.query.birth,
@@ -50,8 +84,12 @@ app.get('/AddSurveyCorps',(req,res) => {
 		"evaluate":req.query.evaluate,
 		"filePath":req.query.filePath
 	}
-	var addSql = 'INSERT INTO suveycorps(name,age,birth,height,weight,survival,titan,ability,evaluate,filePath) values(?,?,?,?,?,?,?,?,?,?)'
-})	var addSqlParams = []
+	var updateSql = 'UPDATE suveycorps SET name = ?,age = ?,birth = ?,height = ?,weight = ?,survival = ?,titan = ?,ability = ?,evaluate = ?,evaluate = ?,filePath = ?'
+})
+
+
+
+var addSqlParams = []
 function Result({code=1,msg='',data={}}){
     this.code=code;
     this.msg=msg;
