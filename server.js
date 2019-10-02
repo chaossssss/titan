@@ -44,31 +44,41 @@ app.get('/GetSurveyCorpsList',(req,res) => {
     console.log('请求内容',req.query);
     const sqlStr = 'select * from surveycorps'
     connection.query(sqlStr,(err,results) => {
-        
-        if(err) return res.json({err_code:1,message:'获取失败',affectedRows:0})
+        if(err) return res.json({err_code:'0',message:'获取失败',affectedRows:0})
         res.json(
-         new Result({data:results})
+         new Result({err_code:'OK',data:results})
         );
         
     })
 })
-app.get('/AddSurveyCorps',(req,res) => {
+app.post('/AddSurveyCorps',(req,res) => {
 	// var form = new formidable.IncomingForm();
 	// form.encoding = 'utf-8';
-	console.log('1111')
-	// var response = {
-	// 	"name":req.query.name,
-	// 	"age":req.query.age,
-	// 	"birth":req.query.birth,
-	// 	"height":req.query.height,
-	// 	"weight":req.query.weight,
-	// 	"survival":req.query.survival,
-	// 	"titan":req.query.titan,
-	// 	"ability":req.query.ability,
-	// 	"evaluate":req.query.evaluate,
-	// 	"filePath":req.query.filePath
-	// }
-	// var addSql = 'INSERT INTO suveycorps(name,age,birth,height,weight,survival,titan,ability,evaluate,filePath) values(?,?,?,?,?,?,?,?,?,?)'
+	var response = {
+		"name":req.body.name,
+		"age":req.body.age,
+		"birth":req.body.birth,
+		"height":req.body.height,
+		"weight":req.body.weight,
+		"survival":req.body.survival,
+		"titan":req.body.titan,
+		"ability":req.body.ability,
+		"evaluate":req.body.evaluate,
+		"filePath":req.body.filePath
+	}
+	console.log(response)
+	var addSql = 'INSERT INTO surveycorps(name,age,birth,height,weight,survival,titan,ability,evaluate) values(?,?,?,?,?,?,?,?,?)'
+	var addSqlParams = [response.name,response.age,response.birth,response.height,response.weight,response.survival,response.titan,response.ability,response.evaluate]
+	connection.query(addSql,addSqlParams,function (err, results){
+		console.log(addSqlParams)
+		if(err){
+			console.log(err)
+			return res.json({err_code:'0',content:results,message:'添加失败',affectedRows:0});
+		}
+		res.json(
+			new Result({err_code:'OK',data:results})
+		);
+	})
 })
 app.get('/UpdateSurveyCorps',(req,res) => {
 	var response = {

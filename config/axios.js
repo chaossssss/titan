@@ -30,7 +30,7 @@ export function fetch(url,params={}){
  * @param data
  * @returns {Promise}
  */
-
+var instance = axios.create({ headers: {'content-type': 'application/x-www-form-urlencoded'} });
  export function post(url,data = {}){
    return new Promise((resolve,reject) => {
      axios.put(url,data)

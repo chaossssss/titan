@@ -71,6 +71,8 @@
 
 <script>
 import * as api from '@/api/api.js'
+import axios from 'axios';
+var qs=require('qs');
 export default {
   name: 'CorpsView',
   data() {
@@ -119,8 +121,8 @@ export default {
     },
     onSubmit(){
       let submitData = this.form;
-      let userid = this.$route.params.total
-      submitData.id = parseInt(userid) + 1
+      // let userid = this.$route.params.total
+      // submitData.id = parseInt(userid) + 1
       submitData.ability = [
       {
         "name":"格斗术",
@@ -145,7 +147,19 @@ export default {
       ]
       
       let pagePath = this.$route.path.split("/")[1]
-      let data = submitData
+      // let data = submitData
+      let data = {
+        name:'test',
+        age:12,
+        birth:'',
+        height:'',
+        weight:'',
+        survival:'',
+        titan:'',
+        ability:'',
+        evaluate:'',
+        filePath:''
+      }
       console.log(data)
       // json-server
       // if(pagePath == "SurveyCorpsAdd") {  
@@ -161,19 +175,11 @@ export default {
 
       //   })
       // }
-      if(pagePath == "SurveyCorpsAdd") {  
-        this.$get("/AddSurveyCorps",data).then(res=>{
-          console.log(res)
-        })
-      }else if(pagePath == "CharterCorpsAdd"){
-        this.$post(api.GetCharterCorpsList,data).then(res=>{
+      var instance = axios.create({ headers: {'content-type': 'application/x-www-form-urlencoded'} });
+      instance.post(`/AddSurveyCorps`,qs.stringify(data)).then(res => {
+        console.log(res)
+      });
 
-        })
-      }else if(pagePath == "BeStationedCorpsAdd"){
-        this.$post(api.GetBeStationedCorpsList,data).then(res=>{
-
-        })
-      }
     }
   }
 }

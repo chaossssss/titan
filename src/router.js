@@ -120,7 +120,10 @@ const asyncRouterMap = [{
 }]
 
 
-
+// router.$addRoutes = (params) => {
+//   router.matcher = new Router({mode: 'history'}).matcher;
+//   router.addRoutes(params)
+// }
 
 router.beforeEach((to, from, next) => {
   router.addRoutes(asyncRouterMap)
