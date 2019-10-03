@@ -34,7 +34,8 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '123456',
-  database : 'titan'
+  database : 'titan',
+  multipleStatements: true
 });//配置数据库
  
 connection.connect();
@@ -42,11 +43,28 @@ connection.connect();
 app.get('/GetSurveyCorpsList',(req,res) => {
     // 定义SQL语句
     console.log('请求内容',req.query);
-    const sqlStr = 'select * from surveycorps'
+    var pageSize = req.query.pageSize
+    var pageNo = req.query.pageNo
+    const sqlStr = 'select count(*) from surveycorps;select * from surveycorps limit ' + (pageNo-1)*pageSize + ',' + pageSize
     connection.query(sqlStr,(err,results) => {
+    	var dataString = JSON.stringify(results);
+    	var data = JSON.parse(dataString);
         if(err) return res.json({err_code:'0',message:'获取失败',affectedRows:0})
+        // 计算总页数
+        var allCount = results[0][0]['count(*)'];
+        var allPage = parseInt(allCount)/pageSize;
+        var pageStr = allPage.toString();
+        // 不能被整除
+        if (pageStr.indexOf('.')>0) {
+            allPage = parseInt(pageStr.split('.')[0]) + 1; 
+        }
         res.json(
-         new Result({err_code:'OK',data:results})
+        	new Result({data:{
+        		err_code:'OK',
+        		totalPage:allPage,
+        		allCount:allCount,
+        		listData:data[1]
+        	}})
         );
         
     })

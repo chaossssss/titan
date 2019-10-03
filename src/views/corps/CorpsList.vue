@@ -140,7 +140,8 @@ export default {
     },
     getPropsList(){
       this.$get('/GetSurveyCorpsList',{
-        page:1
+        pageNo:1,
+        pageSize:10
       }).then((res)=>{
         console.log(res)
       })
