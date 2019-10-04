@@ -10,6 +10,9 @@
           <el-date-picker format="MM-dd" value-format="MM-dd" type="date" placeholder="选择日期" v-model="form.birth" style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
+      <el-form-item label="年龄">
+        <el-input v-model="form.age"></el-input>
+      </el-form-item>
       <el-form-item label="身高">
         <el-input v-model="form.height"></el-input>
       </el-form-item>
@@ -31,8 +34,10 @@
           action="/api/image"
           list-type="picture-card"
           name="the_file"
+          :multiple="false"
           :on-preview="handlePictureCardPreview"
-          :on-remove="handleRemove">
+          :on-remove="handleRemove"
+          :on-success="uploadSuccess">
           <i class="el-icon-plus"></i>
         </el-upload>
         <el-dialog :visible.sync="dialogVisible" size="tiny">
@@ -65,6 +70,9 @@
       <el-form-item label="无情">
         <el-input v-model="ability5"></el-input>
       </el-form-item>
+      <el-form-item label="评价">
+        <el-input v-model="form.evaluate"></el-input>
+      </el-form-item>
     </el-col>
   </el-form>
 </el-row>
@@ -81,11 +89,14 @@ export default {
       form: {
         name: '',
         birth: '',
+        age: '',
         height: '',
         weight: '',
         survival: '',
-        titan: false,
+        titan: true,
+        evaluate:'',
       },
+      avatar: '',
       content:'',
       ability1:'',
       ability2:'',
@@ -117,14 +128,19 @@ export default {
       console.log(file, fileList);
     },
     handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.url;
-      this.dialogVisible = true;
+
+    },
+    uploadSuccess(response,file,fileList){
+      console.log(response)
+      this.avatar = response.data;
     },
     onSubmit(){
       let submitData = this.form;
       // let userid = this.$route.params.total
       // submitData.id = parseInt(userid) + 1
-      submitData.ability = [
+      submitData.titan = submitData.titan ? 1 : 0
+      submitData.avatar = this.avatar
+      submitData.ability = JSON.stringify([
       {
         "name":"格斗术",
         "score":this.ability1
@@ -145,22 +161,10 @@ export default {
         "name":"无情",
         "score":this.ability5
       }
-      ]
+      ])
       
       let pagePath = this.$route.path.split("/")[1]
-      // let data = submitData
-      let data = {
-        name:'test',
-        age:12,
-        birth:'',
-        height:'',
-        weight:'',
-        survival:'',
-        titan:'',
-        ability:'',
-        evaluate:'',
-        filePath:''
-      }
+      let data = submitData
       console.log(data)
       // json-server
       // if(pagePath == "SurveyCorpsAdd") {  

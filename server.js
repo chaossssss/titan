@@ -82,11 +82,11 @@ app.post('/AddSurveyCorps',(req,res) => {
 		"titan":req.body.titan,
 		"ability":req.body.ability,
 		"evaluate":req.body.evaluate,
-		"filePath":req.body.filePath
+		"avatar":req.body.avatar
 	}
 	console.log(response)
-	var addSql = 'INSERT INTO surveycorps(name,age,birth,height,weight,survival,titan,ability,evaluate) values(?,?,?,?,?,?,?,?,?)'
-	var addSqlParams = [response.name,response.age,response.birth,response.height,response.weight,response.survival,response.titan,response.ability,response.evaluate]
+	var addSql = 'INSERT INTO surveycorps(name,age,birth,height,weight,survival,titan,ability,evaluate,avatar) values(?,?,?,?,?,?,?,?,?,?)'
+	var addSqlParams = [response.name,response.age,response.birth,response.height,response.weight,response.survival,response.titan,response.ability,response.evaluate,response.avatar]
 	connection.query(addSql,addSqlParams,function (err, results){
 		console.log(addSqlParams)
 		if(err){
