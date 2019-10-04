@@ -32,7 +32,6 @@
         label="操作"
         width="100">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
           <el-button @click="edit(scope.row)" type="text" size="small">编辑</el-button>
           <el-button @click="del(scope.row)" type="text" size="small">删除</el-button>
         </template>
@@ -92,7 +91,9 @@ export default {
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
       this.currentPage = val
-      this.getList(this.pagePath)
+      // jsonserver
+      // this.getList(this.pagePath)
+      this.getPropsList()
     },
     getList(pagePath,index){
       if(index == 1){     
@@ -139,11 +140,15 @@ export default {
       }
     },
     getPropsList(){
+      let that = this
       this.$get('/GetSurveyCorpsList',{
-        pageNo:1,
-        pageSize:10
-      }).then((res)=>{
-        console.log(res)
+        pageNo:that.currentPage,
+        pageSize:that.pageSize
+      }).then((data)=>{
+        console.log(data)
+        this.usersList = data.data.listData
+        this.total = data.data.allCount
+        
       })
     },
     add(total){

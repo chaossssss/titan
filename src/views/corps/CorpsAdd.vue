@@ -28,8 +28,9 @@
       </el-form-item>
       <el-form-item label="头像">
         <el-upload
-          action="https://jsonplaceholder.typicode.com/posts/"
+          action="/api/image"
           list-type="picture-card"
+          name="the_file"
           :on-preview="handlePictureCardPreview"
           :on-remove="handleRemove">
           <i class="el-icon-plus"></i>
