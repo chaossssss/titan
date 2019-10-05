@@ -52,7 +52,8 @@
 
 <script>
 import * as api from '@/api/api.js'
-
+import axios from 'axios';
+var qs=require('qs');
 export default {
   name: 'CorpsList',
   data(){
@@ -160,25 +161,33 @@ export default {
       this.$router.push({path:`${path}Edit/${row.id}`})
     },
     del(row){
-      if(this.pagePath == "/SurveyCorps") {        
-        this.$del(api.GetSurverCorpsList,{
-            id:row.id,
-        }).then((res)=>{
+      // jsonserver
+      // if(this.pagePath == "/SurveyCorps") {        
+      //   this.$del(api.GetSurverCorpsList,{
+      //       id:row.id,
+      //   }).then((res)=>{
 
-        })
-      }else if(this.pagePath == "/CharterCorps"){
-        this.$del(api.GetCharterCorpsList,{
-            id:row.id,
-        }).then((res)=>{
+      //   })
+      // }else if(this.pagePath == "/CharterCorps"){
+      //   this.$del(api.GetCharterCorpsList,{
+      //       id:row.id,
+      //   }).then((res)=>{
 
-        })
-      }else if(this.pagePath == "/BeStationedCorps"){
-        this.$del(api.GetBeStationedCorpsList,{
-            id:row.id,
-        }).then((res)=>{
+      //   })
+      // }else if(this.pagePath == "/BeStationedCorps"){
+      //   this.$del(api.GetBeStationedCorpsList,{
+      //       id:row.id,
+      //   }).then((res)=>{
 
-        })
-      }
+      //   })
+      // }
+      var instance = axios.create({ headers: {'content-type': 'application/x-www-form-urlencoded'} });
+      instance.post(`/DelSurveyCorps`,qs.stringify({id:row.id})).then(res => {
+        console.log(res)
+        if(res.data.code == 1){
+          this.getPropsList()
+        }
+      });
     }
   },
 }

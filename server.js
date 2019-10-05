@@ -98,6 +98,18 @@ app.post('/AddSurveyCorps',(req,res) => {
 		);
 	})
 })
+app.post('/DelSurveyCorps',(req,res) => {
+	var delSql = 'delete from surveycorps where id=' + req.body.id
+	connection.query(delSql,function(err,results){
+		if(err){
+			console.log(err)
+			return res.json({err_code:'0',content:results,message:'删除失败',affectedRows:0});
+		}
+		res.json(
+			new Result({err_code:'OK'})
+		);
+	})
+})
 app.get('/UpdateSurveyCorps',(req,res) => {
 	var response = {
 		"id":req.query.id,
