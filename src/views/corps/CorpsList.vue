@@ -156,7 +156,7 @@ export default {
       let path = this.$route.path.substring(1,this.$route.path.length)
       this.$router.push({path:`${path}Add/${total}`})
     },
-    eidt(row){
+    edit(row){
       let path = this.$route.path.substring(1,this.$route.path.length)
       this.$router.push({path:`${path}Edit/${row.id}`})
     },

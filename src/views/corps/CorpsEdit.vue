@@ -1,59 +1,78 @@
 <template>
 <el-row style="margin-left:20px;text-align:left;">
-  <el-col :span="10" class="pr20">
-    <el-form ref="form" :model="form" label-width="80px">
-      <el-form-item label="姓名">
-        <el-input v-model="form.name"></el-input>
+  <el-form ref="form" :model="form" label-width="80px">
+      <el-col :span="10" class="pr20">
+        <el-form-item label="姓名">
+          <el-input v-model="form.name"></el-input>
+        </el-form-item>
+        <el-form-item label="生日">
+          <el-col :span="11">
+            <el-date-picker format="MM-dd" type="date" placeholder="选择日期" v-model="form.birth" style="width: 100%;"></el-date-picker>
+          </el-col>
+        </el-form-item>
+        <el-form-item label="年龄">
+          <el-input v-model="form.age"></el-input>
+        </el-form-item>
+        <el-form-item label="身高">
+          <el-input v-model="form.height"></el-input>
+        </el-form-item>
+        <el-form-item label="体重">
+          <el-input v-model="form.weight"></el-input>
+        </el-form-item>
+        <el-form-item label="生存状况">
+          <el-radio-group v-model="form.survival">
+            <el-radio :label="1">存活</el-radio>
+            <el-radio :label="0">死亡</el-radio>
+            <el-radio :label="2">未知</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="继承巨人">
+          <el-switch disabled v-model="form.titan"></el-switch>
+        </el-form-item>
+        <el-form-item label="头像">
+          <el-upload
+            action="/api/image"
+            list-type="picture-card"
+            name="the_file"
+            :multiple="false"
+            :on-preview="handlePictureCardPreview"
+            :on-remove="handleRemove"
+            :on-success="uploadSuccess">
+            <img id="avatar" :src="avatar" v-if="avatar" class="avatar">
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
+        </el-form-item>
+  <!--       <quill-editor v-model="content"
+                      ref="myQuillEditor"
+                      @blur="onEditorBlur($event)"
+                      @focus="onEditorFocus($event)"
+                      @ready="onEditorReady($event)">
+        </quill-editor> -->
+        <el-form-item>
+          <el-button @click="onSubmit()" type="primary">提交</el-button>
+        </el-form-item>
+    </el-col>
+    <el-col :span="10">
+      <el-form-item label="格斗术">
+        <el-input v-model="ability1"></el-input>
       </el-form-item>
-      <el-form-item label="生日">
-        <el-col :span="11">
-          <el-date-picker format="MM-dd" type="date" placeholder="选择日期" v-model="form.birth" style="width: 100%;"></el-date-picker>
-        </el-col>
+      <el-form-item label="行动力">
+        <el-input v-model="ability2"></el-input>
       </el-form-item>
-      <el-form-item label="身高">
-        <el-input v-model="form.height"></el-input>
+      <el-form-item label="头脑战">
+        <el-input v-model="ability3"></el-input>
       </el-form-item>
-      <el-form-item label="体重">
-        <el-input v-model="form.weight"></el-input>
+      <el-form-item label="协调性">
+        <el-input v-model="ability4"></el-input>
       </el-form-item>
-      <el-form-item label="生存状况">
-        <el-radio-group v-model="form.survival">
-          <el-radio disabled :label="1">存活</el-radio>
-          <el-radio disabled :label="0">死亡</el-radio>
-          <el-radio disabled :label="2">未知</el-radio>
-        </el-radio-group>
+      <el-form-item label="无情">
+        <el-input v-model="ability5"></el-input>
       </el-form-item>
-      <el-form-item label="继承巨人">
-        <el-switch disabled v-model="form.titan"></el-switch>
+      <el-form-item label="评价">
+        <el-input v-model="form.evaluate"></el-input>
       </el-form-item>
-<!--       <quill-editor v-model="content"
-                    ref="myQuillEditor"
-                    @blur="onEditorBlur($event)"
-                    @focus="onEditorFocus($event)"
-                    @ready="onEditorReady($event)">
-      </quill-editor> -->
-      <el-form-item>
-        <el-button @click="onSubmit()" type="primary">提交</el-button>
-      </el-form-item>
-    </el-form>
-  </el-col>
-  <el-col :span="10">
-    <el-form-item label="格斗术">
-      <el-input v-model="ability1"></el-input>
-    </el-form-item>
-    <el-form-item label="行动力">
-      <el-input v-model="ability2"></el-input>
-    </el-form-item>
-    <el-form-item label="头脑战">
-      <el-input v-model="ability3"></el-input>
-    </el-form-item>
-    <el-form-item label="协调性">
-      <el-input v-model="ability4"></el-input>
-    </el-form-item>
-    <el-form-item label="无情">
-      <el-input v-model="ability5"></el-input>
-    </el-form-item>
-  </el-col>
+    </el-col>
+  </el-form>
 </el-row>
 </template>
 
@@ -66,10 +85,12 @@ export default {
       form: {
         name: '',
         birth: '',
+        age: '',
         height: '',
         weight: '',
         survival: '',
         titan: false,
+        evaluate: '',
       },
       content:'',
       ability1:'',
@@ -77,48 +98,53 @@ export default {
       ability3:'',
       ability4:'',
       ability5:'',
+      id:'',
+      avatar:'',
     }
   },
   mounted(){
     let userid = this.$route.params.id
+    this.id = userid
     let path = "/" + this.$route.path.split("/")[1]
-    if(path == "/SurveyCorps"){
-      this.$get(api.GetSurverCorpsList,{
-        id: userid
-      }).then((res)=>{
-          console.log(res)
-          this.form.name = res[0].name
-          this.form.birth = res[0].birth
-          this.form.height = res[0].height
-          this.form.weight = res[0].weight
-          this.form.survival = res[0].survival
-          this.form.titan = res[0].titan
-      })
-    }else if(path == "/CharterCorps"){
-      this.$get(api.GetCharterCorpsList,{
-        id: userid
-      }).then((res)=>{
-          console.log(res)
-          this.form.name = res[0].name
-          this.form.birth = res[0].birth
-          this.form.height = res[0].height
-          this.form.weight = res[0].weight
-          this.form.survival = res[0].survival
-          this.form.titan = res[0].titan
-      })
-    }else if(path == "/BeStationedCorps"){
-      this.$get(api.GetBeStationedCorpsList,{
-        id: userid
-      }).then((res)=>{
-          console.log(res)
-          this.form.name = res[0].name
-          this.form.birth = res[0].birth
-          this.form.height = res[0].height
-          this.form.weight = res[0].weight
-          this.form.survival = res[0].survival
-          this.form.titan = res[0].titan
-      })
-    }
+    this.getView(userid)
+    // jsonserver
+    // if(path == "/SurveyCorps"){
+    //   this.$get(api.GetSurverCorpsList,{
+    //     id: userid
+    //   }).then((res)=>{
+    //       console.log(res)
+    //       this.form.name = res[0].name
+    //       this.form.birth = res[0].birth
+    //       this.form.height = res[0].height
+    //       this.form.weight = res[0].weight
+    //       this.form.survival = res[0].survival
+    //       this.form.titan = res[0].titan
+    //   })
+    // }else if(path == "/CharterCorps"){
+    //   this.$get(api.GetCharterCorpsList,{
+    //     id: userid
+    //   }).then((res)=>{
+    //       console.log(res)
+    //       this.form.name = res[0].name
+    //       this.form.birth = res[0].birth
+    //       this.form.height = res[0].height
+    //       this.form.weight = res[0].weight
+    //       this.form.survival = res[0].survival
+    //       this.form.titan = res[0].titan
+    //   })
+    // }else if(path == "/BeStationedCorps"){
+    //   this.$get(api.GetBeStationedCorpsList,{
+    //     id: userid
+    //   }).then((res)=>{
+    //       console.log(res)
+    //       this.form.name = res[0].name
+    //       this.form.birth = res[0].birth
+    //       this.form.height = res[0].height
+    //       this.form.weight = res[0].weight
+    //       this.form.survival = res[0].survival
+    //       this.form.titan = res[0].titan
+    //   })
+    // }
   },
   methods:{
     onEditorBlur(quill) {
@@ -133,6 +159,47 @@ export default {
     onEditorChange({ quill, html, text }) {
       console.log('editor change!', quill, html, text)
       this.content = html
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+
+    },
+    uploadSuccess(response,file,fileList){
+      console.log(response)
+      this.avatar = response.data;
+    },
+    getView(id){
+      this.$get('/GetSurveyCorpsListView',{
+        id:id
+      }).then((data)=>{
+        console.log(data)
+        this.form.name = data.data.data[0].name
+        this.form.age = data.data.data[0].age
+        this.form.birth = data.data.data[0].birth
+        this.form.height = data.data.data[0].height
+        this.form.weight = data.data.data[0].weight
+        this.form.survival = parseFloat(data.data.data[0].survival)
+        this.form.titan = data.data.data[0].titan == '1' ? true : false
+        let abilityData = JSON.parse(data.data.data[0].ability)
+        console.log(abilityData)
+        this.ability1 = abilityData[0].score
+        this.ability2 = abilityData[1].score
+        this.ability3 = abilityData[2].score
+        this.ability4 = abilityData[3].score
+        this.ability5 = abilityData[4].score
+        this.form.evaluate = data.data.data[0].evaluate
+        this.avatar = data.data.data[0].avatar
+        console.log(data.data.data[0].avatar)
+        let avatarSrc = '../..' + data.data.data[0].avatar
+        console.log(avatarSrc)
+        // this.$nextTick(function(){
+          // document.querySelector('#avatar').src = require('../../upload/1ad5ad6eddc451dac47da8f4b4fd5266d0163221_2019_9_6_16_14.jpg')
+          this.avatar = require(avatarSrc)
+          // this.avatar = require('../../upload/1ad5ad6eddc451dac47da8f4b4fd5266d0163221_2019_9_6_16_14.jpg')
+        // })
+      })
     },
     onSubmit(){
       let submitData = this.form;
@@ -164,19 +231,20 @@ export default {
       let pagePath = this.$route.path.split("/")[1]
       let data = submitData
       console.log(data)
-      if(pagePath == "SurveyCorpsAdd") {  
-        this.$patch(api.GetSurverCorpsList,data).then(res=>{
+      // jsonserver
+      // if(pagePath == "SurveyCorpsAdd") {  
+      //   this.$patch(api.GetSurverCorpsList,data).then(res=>{
           
-        })
-      }else if(pagePath == "CharterCorpsAdd"){
-        this.$patch(api.GetCharterCorpsList,data).then(res=>{
+      //   })
+      // }else if(pagePath == "CharterCorpsAdd"){
+      //   this.$patch(api.GetCharterCorpsList,data).then(res=>{
 
-        })
-      }else if(pagePath == "BeStationedCorpsAdd"){
-        this.$patch(api.GetBeStationedCorpsList,data).then(res=>{
+      //   })
+      // }else if(pagePath == "BeStationedCorpsAdd"){
+      //   this.$patch(api.GetBeStationedCorpsList,data).then(res=>{
 
-        })
-      }
+      //   })
+      // }
     }
   }
 }
@@ -186,5 +254,28 @@ export default {
 <style scoped>
 .pr20 {
   padding-right: 20px;
+}
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 148px;
+  height: 148px;
+  line-height: 148px;
+  text-align: center;
+}
+.avatar {
+  width: 148px;
+  height: 148px;
+  display: block;
 }
 </style>

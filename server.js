@@ -69,6 +69,18 @@ app.get('/GetSurveyCorpsList',(req,res) => {
         
     })
 })
+app.get('/GetSurveyCorpsListView',(req,res) => {
+    const sqlStr = 'select * from surveycorps where id=' + req.query.id 
+    connection.query(sqlStr,(err,results) => {
+        if(err) return res.json({err_code:'0',message:'获取失败',affectedRows:0})
+        res.json(
+        	new Result({data:{
+        		err_code:'OK',
+        		data:results
+        	}})
+        );  
+    })
+})
 app.post('/AddSurveyCorps',(req,res) => {
 	// var form = new formidable.IncomingForm();
 	// form.encoding = 'utf-8';
@@ -112,24 +124,25 @@ app.post('/DelSurveyCorps',(req,res) => {
 })
 app.get('/UpdateSurveyCorps',(req,res) => {
 	var response = {
-		"id":req.query.id,
-		"name":req.query.name,
-		"age":req.query.age,
-		"birth":req.query.birth,
-		"height":req.query.height,
-		"weight":req.query.weight,
-		"survival":req.query.survival,
-		"titan":req.query.titan,
-		"ability":req.query.ability,
-		"evaluate":req.query.evaluate,
-		"filePath":req.query.filePath
+		"id":req.body.id,
+		"name":req.body.name,
+		"age":req.body.age,
+		"birth":req.body.birth,
+		"height":req.body.height,
+		"weight":req.body.weight,
+		"survival":req.body.survival,
+		"titan":req.body.titan,
+		"ability":req.body.ability,
+		"evaluate":req.body.evaluate,
+		"avatar":req.body.avatar
 	}
-	var updateSql = 'UPDATE suveycorps SET name = ?,age = ?,birth = ?,height = ?,weight = ?,survival = ?,titan = ?,ability = ?,evaluate = ?,evaluate = ?,filePath = ?'
+	var modSql = 'UPDATE suveycorps SET name = ?,age = ?,birth = ?,height = ?,weight = ?,survival = ?,titan = ?,ability = ?,evaluate = ?,evaluate = ?,avatar = ? where id = ?'
+	var modSqlParams = [response.name,response.age,response.birth,response.height,response.weight,response.survival,response.titan,response.ability,response.evaluate,response.avatar,response.id]
 })
 
 
 
-var addSqlParams = []
+
 function Result({code=1,msg='',data={}}){
     this.code=code;
     this.msg=msg;
