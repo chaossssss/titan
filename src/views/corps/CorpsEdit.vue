@@ -34,6 +34,7 @@
             action="/api/image"
             list-type="picture-card"
             name="the_file"
+            :file-list="fileArr"
             :multiple="false"
             :on-preview="handlePictureCardPreview"
             :on-remove="handleRemove"
@@ -78,6 +79,8 @@
 
 <script>
 import * as api from '@/api/api.js'
+import axios from 'axios';
+var qs=require('qs');
 export default {
   name: 'CorpsView',
   data() {
@@ -100,6 +103,7 @@ export default {
       ability5:'',
       id:'',
       avatar:'',
+      fileArr:[]
     }
   },
   mounted(){
@@ -192,20 +196,13 @@ export default {
         this.form.evaluate = data.data.data[0].evaluate
         this.avatar = data.data.data[0].avatar
         console.log(data.data.data[0].avatar)
-        let avatarSrc = '../..' + data.data.data[0].avatar
-        console.log(avatarSrc)
-        // this.$nextTick(function(){
-          // document.querySelector('#avatar').src = require('../../upload/1ad5ad6eddc451dac47da8f4b4fd5266d0163221_2019_9_6_16_14.jpg')
-          this.avatar = require(avatarSrc)
-          // this.avatar = require('../../upload/1ad5ad6eddc451dac47da8f4b4fd5266d0163221_2019_9_6_16_14.jpg')
-        // })
+        this.fileArr = [{url:'../..'+data.data.data[0].avatar}]
       })
     },
     onSubmit(){
       let submitData = this.form;
-      let userid = this.$route.params.total
-      submitData.id = parseInt(userid) + 1
-      submitData.ability = [
+      submitData.id = this.id
+      submitData.ability = JSON.stringify([
       {
         "name":"格斗术",
         "score":this.ability1
@@ -226,8 +223,8 @@ export default {
         "name":"无情",
         "score":this.ability5
       }
-      ]
-      
+      ])
+      submitData.titan = this.form.titan ? '1' : '0'
       let pagePath = this.$route.path.split("/")[1]
       let data = submitData
       console.log(data)
@@ -245,6 +242,10 @@ export default {
 
       //   })
       // }
+      var instance = axios.create({ headers: {'content-type': 'application/x-www-form-urlencoded'} });
+      instance.post(`/UpdateSurveyCorps`,qs.stringify(data)).then(res => {
+        console.log(res)
+      });
     }
   }
 }

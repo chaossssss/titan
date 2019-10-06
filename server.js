@@ -122,7 +122,7 @@ app.post('/DelSurveyCorps',(req,res) => {
 		);
 	})
 })
-app.get('/UpdateSurveyCorps',(req,res) => {
+app.post('/UpdateSurveyCorps',(req,res) => {
 	var response = {
 		"id":req.body.id,
 		"name":req.body.name,
@@ -136,8 +136,17 @@ app.get('/UpdateSurveyCorps',(req,res) => {
 		"evaluate":req.body.evaluate,
 		"avatar":req.body.avatar
 	}
-	var modSql = 'UPDATE suveycorps SET name = ?,age = ?,birth = ?,height = ?,weight = ?,survival = ?,titan = ?,ability = ?,evaluate = ?,evaluate = ?,avatar = ? where id = ?'
+	var modSql = 'UPDATE surveycorps SET name = ?,age = ?,birth = ?,height = ?,weight = ?,survival = ?,titan = ?,ability = ?,evaluate = ?,avatar = ? where id = ?'
 	var modSqlParams = [response.name,response.age,response.birth,response.height,response.weight,response.survival,response.titan,response.ability,response.evaluate,response.avatar,response.id]
+	connection.query(modSql,modSqlParams,function (err, results){
+		if(err){
+			console.log(err)
+			return res.json({err_code:'0',content:results,message:'修改失败',affectedRows:0});
+		}
+		res.json(
+			new Result({err_code:'OK'})
+		);
+	})
 })
 
 
