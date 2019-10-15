@@ -6,7 +6,7 @@ const router=express.Router();
 const fs=require('fs');
 const path=require('path');
 const app = express();
-
+app.use(express.static("./src/upload"))
 app.use(express.static(__dirname + "./uploads"));
 app.use(bodyParser.json())//json请求
 app.use(bodyParser.urlencoded({extended:false}));//表单请求
@@ -181,6 +181,6 @@ app.post("/image",function (req,res) {
         var avatarName = name + time + '.' + type;
         var newPath = form.uploadDir + "/" + avatarName;
         fs.renameSync(files.the_file.path, newPath);  //重命名
-        res.send({data:"/upload/"+avatarName})
+        res.send({data:avatarName})
     })
 });

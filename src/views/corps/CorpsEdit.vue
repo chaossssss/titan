@@ -194,9 +194,9 @@ export default {
         this.ability4 = abilityData[3].score
         this.ability5 = abilityData[4].score
         this.form.evaluate = data.data.data[0].evaluate
-        this.avatar = data.data.data[0].avatar
+        this.avatar = `http://127.0.0.1:3000/${data.data.data[0].avatar}`
         console.log(data.data.data[0].avatar)
-        this.fileArr = [{url:'../..'+data.data.data[0].avatar}]
+        // this.fileArr = [{url:require('@'+data.data.data[0].avatar)}]
       })
     },
     onSubmit(){
