@@ -105,9 +105,7 @@ app.post('/AddSurveyCorps',(req,res) => {
 			console.log(err)
 			return res.json({err_code:'0',content:results,message:'添加失败',affectedRows:0});
 		}
-		res.json(
-			new Result({err_code:'OK',data:results})
-		);
+		return res.json({err_code:'OK'});
 	})
 })
 app.post('/DelSurveyCorps',(req,res) => {
@@ -117,9 +115,7 @@ app.post('/DelSurveyCorps',(req,res) => {
 			console.log(err)
 			return res.json({err_code:'0',content:results,message:'删除失败',affectedRows:0});
 		}
-		res.json(
-			new Result({err_code:'OK'})
-		);
+		return res.json({err_code:'OK'})
 	})
 })
 app.post('/UpdateSurveyCorps',(req,res) => {
@@ -143,9 +139,7 @@ app.post('/UpdateSurveyCorps',(req,res) => {
 			console.log(err)
 			return res.json({err_code:'0',content:results,message:'修改失败',affectedRows:0});
 		}
-		res.json(
-			new Result({err_code:'OK'})
-		);
+		return res.json({err_code:'OK'})
 	})
 })
 

@@ -135,6 +135,7 @@ export default {
       this.avatar = response.data;
     },
     onSubmit(){
+      let _this = this;
       let submitData = this.form;
       // let userid = this.$route.params.total
       // submitData.id = parseInt(userid) + 1
@@ -183,6 +184,14 @@ export default {
       var instance = axios.create({ headers: {'content-type': 'application/x-www-form-urlencoded'} });
       instance.post(`/AddSurveyCorps`,qs.stringify(data)).then(res => {
         console.log(res)
+        if(res.data.err_code == "OK"){
+          this.$message({
+            message:"提交成功！",
+            onClose:function(){
+              _this.$router.go(-1)
+            }
+          })
+        }
       });
 
     }
