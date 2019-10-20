@@ -245,6 +245,14 @@ export default {
       var instance = axios.create({ headers: {'content-type': 'application/x-www-form-urlencoded'} });
       instance.post(`/UpdateSurveyCorps`,qs.stringify(data)).then(res => {
         console.log(res)
+        if(res.data.err_code == "OK"){
+          this.$message({
+            message:"修改成功！",
+            onClose:function(){
+              _this.$router.go(-1)
+            }
+          })
+        }
       });
     }
   }

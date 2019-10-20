@@ -45,7 +45,7 @@ app.get('/GetSurveyCorpsList',(req,res) => {
     console.log('请求内容',req.query);
     var pageSize = req.query.pageSize
     var pageNo = req.query.pageNo
-    const sqlStr = 'select count(*) from surveycorps;select * from surveycorps limit ' + (pageNo-1)*pageSize + ',' + pageSize
+    const sqlStr = 'select count(*) from surveycorps;select * from surveycorps order by id desc limit ' + (pageNo-1)*pageSize + ',' + pageSize
     connection.query(sqlStr,(err,results) => {
     	var dataString = JSON.stringify(results);
     	var data = JSON.parse(dataString);
