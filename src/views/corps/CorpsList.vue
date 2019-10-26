@@ -184,7 +184,12 @@ export default {
       var instance = axios.create({ headers: {'content-type': 'application/x-www-form-urlencoded'} });
       instance.post(`/DelSurveyCorps`,qs.stringify({id:row.id})).then(res => {
         console.log(res)
-        if(res.data.code == 1){
+        if(res.data.err_code == "OK"){
+          const h = this.$createElement;
+          this.$notify({
+            title: '删除成功！',
+            message: h('i', { style: 'color: teal'}, '已经删除')
+          });
           this.getPropsList()
         }
       });
