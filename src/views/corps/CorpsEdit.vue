@@ -2,34 +2,34 @@
 <el-row style="margin-left:20px;text-align:left;">
   <el-form ref="form" :model="form" label-width="80px">
       <el-col :span="10" class="pr20">
-        <el-form-item label="å§“å">
+        <el-form-item label="ĞÕÃû">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
-        <el-form-item label="ç”Ÿæ—¥">
+        <el-form-item label="ÉúÈÕ">
           <el-col :span="11">
-            <el-date-picker format="MM-dd" type="date" placeholder="é€‰æ‹©æ—¥æœŸ" v-model="form.birth" style="width: 100%;"></el-date-picker>
+            <el-date-picker format="MM-dd" type="date" placeholder="Ñ¡ÔñÈÕÆÚ" v-model="form.birth" style="width: 100%;"></el-date-picker>
           </el-col>
         </el-form-item>
-        <el-form-item label="å¹´é¾„">
+        <el-form-item label="ÄêÁä">
           <el-input v-model="form.age"></el-input>
         </el-form-item>
-        <el-form-item label="èº«é«˜">
+        <el-form-item label="Éí¸ß">
           <el-input v-model="form.height"></el-input>
         </el-form-item>
-        <el-form-item label="ä½“é‡">
+        <el-form-item label="ÌåÖØ">
           <el-input v-model="form.weight"></el-input>
         </el-form-item>
-        <el-form-item label="ç”Ÿå­˜çŠ¶å†µ">
+        <el-form-item label="Éú´æ×´¿ö">
           <el-radio-group v-model="form.survival">
-            <el-radio :label="1">å­˜æ´»</el-radio>
-            <el-radio :label="0">æ­»äº¡</el-radio>
-            <el-radio :label="2">æœªçŸ¥</el-radio>
+            <el-radio :label="1">´æ»î</el-radio>
+            <el-radio :label="0">ËÀÍö</el-radio>
+            <el-radio :label="2">Î´Öª</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="ç»§æ‰¿å·¨äºº">
+        <el-form-item label="¼Ì³Ğ¾ŞÈË">
           <el-switch disabled v-model="form.titan"></el-switch>
         </el-form-item>
-        <el-form-item label="å¤´åƒ">
+        <el-form-item label="Í·Ïñ">
           <el-upload
             action="/api/image"
             list-type="picture-card"
@@ -50,26 +50,26 @@
                       @ready="onEditorReady($event)">
         </quill-editor> -->
         <el-form-item>
-          <el-button @click="onSubmit()" type="primary">æäº¤</el-button>
+          <el-button @click="onSubmit()" type="primary">Ìá½»</el-button>
         </el-form-item>
     </el-col>
     <el-col :span="10">
-      <el-form-item label="æ ¼æ–—æœ¯">
+      <el-form-item label="¸ñ¶·Êõ">
         <el-input v-model="ability1"></el-input>
       </el-form-item>
-      <el-form-item label="è¡ŒåŠ¨åŠ›">
+      <el-form-item label="ĞĞ¶¯Á¦">
         <el-input v-model="ability2"></el-input>
       </el-form-item>
-      <el-form-item label="å¤´è„‘æˆ˜">
+      <el-form-item label="Í·ÄÔÕ½">
         <el-input v-model="ability3"></el-input>
       </el-form-item>
-      <el-form-item label="åè°ƒæ€§">
+      <el-form-item label="Ğ­µ÷ĞÔ">
         <el-input v-model="ability4"></el-input>
       </el-form-item>
-      <el-form-item label="æ— æƒ…">
+      <el-form-item label="ÎŞÇé">
         <el-input v-model="ability5"></el-input>
       </el-form-item>
-      <el-form-item label="è¯„ä»·">
+      <el-form-item label="ÆÀ¼Û">
         <el-input v-model="form.evaluate"></el-input>
       </el-form-item>
     </el-col>
@@ -204,23 +204,23 @@ export default {
       submitData.id = this.id
       submitData.ability = JSON.stringify([
       {
-        "name":"æ ¼æ–—æœ¯",
+        "name":"¸ñ¶·Êõ",
         "score":this.ability1
       },
       {
-        "name":"è¡ŒåŠ¨åŠ›",
+        "name":"ĞĞ¶¯Á¦",
         "score":this.ability2
       },
       {
-        "name":"å¤´è„‘æˆ˜",
+        "name":"Í·ÄÔÕ½",
         "score":this.ability3
       },
       {
-        "name":"åè°ƒæ€§",
+        "name":"Ğ­µ÷ĞÔ",
         "score":this.ability4
       },
       {
-        "name":"æ— æƒ…",
+        "name":"ÎŞÇé",
         "score":this.ability5
       }
       ])
@@ -247,9 +247,11 @@ export default {
         console.log(res)
         if(res.data.err_code == "OK"){
           this.$message({
-            message:"ä¿®æ”¹æˆåŠŸï¼",
+            message:"ĞŞ¸Ä³É¹¦£¡",
             onClose:function(){
-              _this.$router.go(-1)
+              // _this.$router.go(-1)
+              _this.$router.push({path:"/SurveyCorps"})
+              
             }
           })
         }

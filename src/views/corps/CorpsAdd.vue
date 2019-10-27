@@ -188,7 +188,8 @@ export default {
           this.$message({
             message:"提交成功！",
             onClose:function(){
-              _this.$router.go(-1)
+              // _this.$router.go(-1)
+              _this.$router.push({path:"/SurveyCorps"})
             }
           })
         }

@@ -126,11 +126,11 @@ const asyncRouterMap = [{
 // }
 
 router.beforeEach((to, from, next) => {
-  router.addRoutes(asyncRouterMap)
   if(to.matched.some( m => m.meta.auth)) {
     if (to.path === '/login') {
       next();
     } else {
+      router.addRoutes(asyncRouterMap)
       let token = localStorage.getItem('Authorization');
       console.log(token)
       if (token == null || token == '') {
