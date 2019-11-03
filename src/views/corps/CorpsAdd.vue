@@ -44,12 +44,24 @@
           <img width="100%" :src="dialogImageUrl" alt="">
         </el-dialog>
       </el-form-item>
-<!--       <quill-editor v-model="content"
-                    ref="myQuillEditor"
-                    @blur="onEditorBlur($event)"
-                    @focus="onEditorFocus($event)"
-                    @ready="onEditorReady($event)">
-      </quill-editor> -->
+      <div class="editorcon">
+        <quill-editor v-model="content"
+                      ref="myQuillEditor"
+                      @blur="onEditorBlur($event)"
+                      @focus="onEditorFocus($event)"
+                      @ready="onEditorReady($event)"
+                      @change="onEditorChange($event)">
+        </quill-editor>
+<!--         <el-upload
+                class="avatar-uploader"
+                action="/api/image"
+                name="the_file"
+                :show-file-list="false"
+                :on-success="uploadEditorSuccess"
+                :on-error="uploadError"
+                :before-upload="beforeUpload">
+        </el-upload> -->
+      </div>
       <el-form-item>
         <el-button @click="onSubmit()" type="primary">提交</el-button>
       </el-form-item>
@@ -104,7 +116,25 @@ export default {
       ability4:'',
       ability5:'',
       dialogImageUrl: '',
-      dialogVisible: false
+      dialogVisible: false,
+      editorPic: '',
+      editorOption: {
+        placeholder: '',
+        theme: 'snow',  // or 'bubble'
+        modules: {
+           toolbar: {
+            handlers: {
+              'image': function (value) {
+                if (value) {
+                  document.querySelector('#quill-upload input').click()
+                } else {
+                  this.quill.format('image', false);
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   mounted(){
@@ -112,16 +142,12 @@ export default {
   },
   methods:{
     onEditorBlur(quill) {
-      console.log('editor blur!', quill)
     },
     onEditorFocus(quill) {
-      console.log('editor focus!', quill)
     },
     onEditorReady(quill) {
-      console.log('editor ready!', quill)
     },
     onEditorChange({ quill, html, text }) {
-      console.log('editor change!', quill, html, text)
       this.content = html
     },
     handleRemove(file, fileList) {
@@ -133,6 +159,10 @@ export default {
     uploadSuccess(response,file,fileList){
       console.log(response)
       this.avatar = response.data;
+    },
+    uploadEditorSuccess(response,file,fileList){
+      console.log(response)
+      this.editorPic = response.data;
     },
     onSubmit(){
       let _this = this;
@@ -201,8 +231,11 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 .pr20 {
   padding-right: 20px;
+}
+.editorcon .ql-editor{
+  height:400px;
 }
 </style>
