@@ -37,7 +37,7 @@
           :multiple="false"
           :on-preview="handlePictureCardPreview"
           :on-remove="handleRemove"
-          :on-success="uploadSuccess">
+          :on-success="function(res,file){return uploadSuccess(res,file,'avatar')}">
           <i class="el-icon-plus"></i>
         </el-upload>
         <el-dialog :visible.sync="dialogVisible" size="tiny">
@@ -52,15 +52,15 @@
                       @ready="onEditorReady($event)"
                       @change="onEditorChange($event)">
         </quill-editor>
-<!--         <el-upload
+        <el-upload
                 class="avatar-uploader"
                 action="/api/image"
                 name="the_file"
                 :show-file-list="false"
-                :on-success="uploadEditorSuccess"
+                :on-success="function(res,file){return uploadSuccess(res,file,'editor')}"
                 :on-error="uploadError"
                 :before-upload="beforeUpload">
-        </el-upload> -->
+        </el-upload>
       </div>
       <el-form-item>
         <el-button @click="onSubmit()" type="primary">提交</el-button>
@@ -156,9 +156,13 @@ export default {
     handlePictureCardPreview(file) {
 
     },
-    uploadSuccess(response,file,fileList){
-      console.log(response)
-      this.avatar = response.data;
+    uploadSuccess(response,file,type){
+      console.log(response,type)
+      if(type == 'avatar'){
+        this.avatar = response.data;
+      }else if(type == 'editor'){
+
+      }
     },
     uploadEditorSuccess(response,file,fileList){
       console.log(response)
