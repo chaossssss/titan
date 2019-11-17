@@ -47,21 +47,21 @@
       <div class="editorcon">
         <quill-editor v-model="content"
                       ref="myQuillEditor"
+                      :options="editorOption"
                       @blur="onEditorBlur($event)"
                       @focus="onEditorFocus($event)"
                       @ready="onEditorReady($event)"
                       @change="onEditorChange($event)">
         </quill-editor>
-        <el-upload
-                class="avatar-uploader"
-                action="/api/image"
-                name="the_file"
-                :show-file-list="false"
-                :on-success="function(res,file){return uploadSuccess(res,file,'editor')}"
-                :on-error="uploadError"
-                :before-upload="beforeUpload">
-        </el-upload>
       </div>
+        <el-upload
+          class="avatar-uploader"
+          action="/api/image"
+          name="the_file"
+          :show-file-list="false"
+          :on-success="function(res,file){return uploadSuccess(res,file,'editor')}"
+        >
+        </el-upload>
       <el-form-item>
         <el-button @click="onSubmit()" type="primary">提交</el-button>
       </el-form-item>
@@ -94,6 +94,16 @@
 import * as api from '@/api/api.js'
 import axios from 'axios';
 var qs=require('qs');
+const toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
+
+  [{'color': []}, {'background': []}],          // dropdown with defaults from theme
+  [{'font': []}],
+  [{'align': []}],
+  ['link', 'image', 'video'],
+  ['clean']                                         // remove formatting button
+]
 export default {
   name: 'CorpsView',
   data() {
@@ -123,10 +133,14 @@ export default {
         theme: 'snow',  // or 'bubble'
         modules: {
            toolbar: {
+            container: toolbarOptions,
             handlers: {
               'image': function (value) {
+
                 if (value) {
-                  document.querySelector('#quill-upload input').click()
+                  // document.querySelector('#quill-upload input').click()
+                  document.querySelector('.avatar-uploader input').click()
+                  alert(1)
                 } else {
                   this.quill.format('image', false);
                 }
@@ -161,7 +175,13 @@ export default {
       if(type == 'avatar'){
         this.avatar = response.data;
       }else if(type == 'editor'){
-
+        let quill = this.$refs.myQuillEditor.quill
+        // 获取光标所在位置
+        let length = quill.getSelection().index;
+        // 插入图片  res.info为服务器返回的图片地址
+        quill.insertEmbed(length, 'image', response.data)
+        // 调整光标到最后
+        quill.setSelection(length + 1)
       }
     },
     uploadEditorSuccess(response,file,fileList){
