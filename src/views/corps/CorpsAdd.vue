@@ -140,7 +140,6 @@ export default {
                 if (value) {
                   // document.querySelector('#quill-upload input').click()
                   document.querySelector('.avatar-uploader input').click()
-                  alert(1)
                 } else {
                   this.quill.format('image', false);
                 }
@@ -162,6 +161,7 @@ export default {
     onEditorReady(quill) {
     },
     onEditorChange({ quill, html, text }) {
+      console.log(html)
       this.content = html
     },
     handleRemove(file, fileList) {
@@ -179,7 +179,7 @@ export default {
         // 获取光标所在位置
         let length = quill.getSelection().index;
         // 插入图片  res.info为服务器返回的图片地址
-        quill.insertEmbed(length, 'image', response.data)
+        quill.insertEmbed(length, 'image', `http://127.0.0.1:3000/${response.data}`)
         // 调整光标到最后
         quill.setSelection(length + 1)
       }
@@ -217,7 +217,7 @@ export default {
         "score":this.ability5
       }
       ])
-      
+      submitData.content = this.content
       let pagePath = this.$route.path.split("/")[1]
       let data = submitData
       console.log(data)
