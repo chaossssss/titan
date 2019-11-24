@@ -127,7 +127,6 @@ export default {
       ability5:'',
       dialogImageUrl: '',
       dialogVisible: false,
-      editorPic: '',
       editorOption: {
         placeholder: '',
         theme: 'snow',  // or 'bubble'
@@ -183,10 +182,6 @@ export default {
         // 调整光标到最后
         quill.setSelection(length + 1)
       }
-    },
-    uploadEditorSuccess(response,file,fileList){
-      console.log(response)
-      this.editorPic = response.data;
     },
     onSubmit(){
       let _this = this;

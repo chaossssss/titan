@@ -38,17 +38,29 @@
             :multiple="false"
             :on-preview="handlePictureCardPreview"
             :on-remove="handleRemove"
-            :on-success="uploadSuccess">
+            :on-success="function(res,file){return uploadSuccess(res,file,'avatar')}">
             <img id="avatar" :src="avatar" v-if="avatar" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
         </el-form-item>
-  <!--       <quill-editor v-model="content"
-                      ref="myQuillEditor"
-                      @blur="onEditorBlur($event)"
-                      @focus="onEditorFocus($event)"
-                      @ready="onEditorReady($event)">
-        </quill-editor> -->
+        <div class="editorcon">
+          <quill-editor v-model="content"
+                        ref="myQuillEditor"
+                        :options="editorOption"
+                        @blur="onEditorBlur($event)"
+                        @focus="onEditorFocus($event)"
+                        @ready="onEditorReady($event)"
+                        @change="onEditorChange($event)">
+          </quill-editor>
+        </div>
+          <el-upload
+            class="avatar-uploader"
+            action="/api/image"
+            name="the_file"
+            :show-file-list="false"
+            :on-success="function(res,file){return uploadSuccess(res,file,'editor')}"
+          >
+          </el-upload>
         <el-form-item>
           <el-button @click="onSubmit()" type="primary">提交</el-button>
         </el-form-item>
@@ -80,6 +92,16 @@
 <script>
 import * as api from '@/api/api.js'
 import axios from 'axios';
+const toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
+
+  [{'color': []}, {'background': []}],          // dropdown with defaults from theme
+  [{'font': []}],
+  [{'align': []}],
+  ['link', 'image', 'video'],
+  ['clean']                                         // remove formatting button
+]
 var qs=require('qs');
 export default {
   name: 'CorpsView',
@@ -103,7 +125,27 @@ export default {
       ability5:'',
       id:'',
       avatar:'',
-      fileArr:[]
+      fileArr:[],
+      editorOption: {
+        placeholder: '',
+        theme: 'snow',  // or 'bubble'
+        modules: {
+           toolbar: {
+            container: toolbarOptions,
+            handlers: {
+              'image': function (value) {
+
+                if (value) {
+                  // document.querySelector('#quill-upload input').click()
+                  document.querySelector('.avatar-uploader input').click()
+                } else {
+                  this.quill.format('image', false);
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   mounted(){
@@ -170,9 +212,19 @@ export default {
     handlePictureCardPreview(file) {
 
     },
-    uploadSuccess(response,file,fileList){
-      console.log(response)
-      this.avatar = response.data;
+    uploadSuccess(response,file,type){
+      console.log(response,type)
+      if(type == 'avatar'){
+        this.avatar = response.data;
+      }else if(type == 'editor'){
+        let quill = this.$refs.myQuillEditor.quill
+        // 获取光标所在位置
+        let length = quill.getSelection().index;
+        // 插入图片  res.info为服务器返回的图片地址
+        quill.insertEmbed(length, 'image', `http://127.0.0.1:3000/${response.data}`)
+        // 调整光标到最后
+        quill.setSelection(length + 1)
+      }
     },
     getView(id){
       this.$get('/GetSurveyCorpsListView',{
@@ -195,6 +247,7 @@ export default {
         this.ability5 = abilityData[4].score
         this.form.evaluate = data.data.data[0].evaluate
         this.avatar = `http://127.0.0.1:3000/${data.data.data[0].avatar}`
+        this.content = data.data.data[0].content
         console.log(data.data.data[0].avatar)
         // this.fileArr = [{url:require('@'+data.data.data[0].avatar)}]
       })
