@@ -131,10 +131,11 @@ app.post('/UpdateSurveyCorps',(req,res) => {
 		"titan":req.body.titan,
 		"ability":req.body.ability,
 		"evaluate":req.body.evaluate,
-		"avatar":req.body.avatar
+		"avatar":req.body.avatar,
+		"content":req.body.content
 	}
-	var modSql = 'UPDATE surveycorps SET name = ?,age = ?,birth = ?,height = ?,weight = ?,survival = ?,titan = ?,ability = ?,evaluate = ?,avatar = ? where id = ?'
-	var modSqlParams = [response.name,response.age,response.birth,response.height,response.weight,response.survival,response.titan,response.ability,response.evaluate,response.avatar,response.id]
+	var modSql = 'UPDATE surveycorps SET name = ?,age = ?,birth = ?,height = ?,weight = ?,survival = ?,titan = ?,ability = ?,evaluate = ?,avatar = ?,content = ? where id = ?'
+	var modSqlParams = [response.name,response.age,response.birth,response.height,response.weight,response.survival,response.titan,response.ability,response.evaluate,response.avatar,response.content,response.id]
 	connection.query(modSql,modSqlParams,function (err, results){
 		if(err){
 			console.log(err)

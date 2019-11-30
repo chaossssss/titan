@@ -35,11 +35,11 @@
             list-type="picture-card"
             name="the_file"
             :file-list="fileArr"
-            :multiple="false"
+            :multiple="multipleBol"
             :on-preview="handlePictureCardPreview"
             :on-remove="handleRemove"
             :on-success="function(res,file){return uploadSuccess(res,file,'avatar')}">
-            <img id="avatar" :src="avatar" v-if="avatar" class="avatar">
+            <img id="avatar" :src="avatar" v-if="avatar && !changedFlag" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
         </el-form-item>
@@ -145,7 +145,9 @@ export default {
             }
           }
         }
-      }
+      },
+      changedFlag: false,
+      multipleBol: false
     }
   },
   mounted(){
@@ -216,6 +218,7 @@ export default {
       console.log(response,type)
       if(type == 'avatar'){
         this.avatar = response.data;
+        this.changedFlag = true
       }else if(type == 'editor'){
         let quill = this.$refs.myQuillEditor.quill
         // 获取光标所在位置
@@ -253,6 +256,7 @@ export default {
       })
     },
     onSubmit(){
+      let _this = this
       let submitData = this.form;
       submitData.id = this.id
       submitData.ability = JSON.stringify([
@@ -278,6 +282,8 @@ export default {
       }
       ])
       submitData.titan = this.form.titan ? '1' : '0'
+      submitData.avatar = this.avatar
+      submitData.content = this.content
       let pagePath = this.$route.path.split("/")[1]
       let data = submitData
       console.log(data)
@@ -303,7 +309,7 @@ export default {
             message:"修改成功！",
             onClose:function(){
               // _this.$router.go(-1)
-              _this.$router.push({path:"/SurveyCorps"})
+              // _this.$router.push({path:"/SurveyCorps"})
               
             }
           })
