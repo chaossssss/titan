@@ -309,7 +309,7 @@ export default {
             message:"修改成功！",
             onClose:function(){
               // _this.$router.go(-1)
-              // _this.$router.push({path:"/SurveyCorps"})
+              _this.$router.push({path:"/SurveyCorps"})
               
             }
           })

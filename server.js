@@ -40,6 +40,19 @@ var connection = mysql.createConnection({
  
 connection.connect();
 
+app.get('/Login',(req,res) => {
+	const sqlStr = 'select count(*) from user where username=' + req.query.username + 'and password=' + req.query.password
+	connection.query(sqlStr,(err,results) => {
+	    if(err) return res.json({err_code:'0',message:'获取失败',affectedRows:0})
+	    res.json(
+	    	new Result({data:{
+	    		err_code:'OK',
+	    		data:results
+	    	}})
+	    );  
+	})
+})
+
 app.get('/GetSurveyCorpsList',(req,res) => {
     // 定义SQL语句
     console.log('请求内容',req.query);
