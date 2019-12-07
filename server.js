@@ -41,15 +41,26 @@ var connection = mysql.createConnection({
 connection.connect();
 
 app.get('/Login',(req,res) => {
-	const sqlStr = 'select count(*) from user where username=' + req.query.username + 'and password=' + req.query.password
+	const sqlStr = 'select count(*) from user where username="' + req.query.username + '" and password="' + req.query.password +'";'
+	console.log(sqlStr)
 	connection.query(sqlStr,(err,results) => {
-	    if(err) return res.json({err_code:'0',message:'获取失败',affectedRows:0})
-	    res.json(
-	    	new Result({data:{
-	    		err_code:'OK',
-	    		data:results
-	    	}})
-	    );  
+	    if(err){
+	    	return res.json({err_code:'0',message:'获取失败!',affectedRows:0})
+	    } 
+		var dataString = JSON.stringify(results);
+		var data = JSON.parse(dataString);
+		console.log(data[0]['count(*)'])
+	    if(data[0]['count(*)'] == 0){
+	    	return res.json({err_code:'0',message:'账号密码错误',affectedRows:0})
+	    }else{
+		    res.json(
+		    	new Result({data:{
+		    		err_code:'OK',
+		    		message:'验证成功！'
+		    		data:results
+		    	}})
+		    );  
+	    }
 	})
 })
 
