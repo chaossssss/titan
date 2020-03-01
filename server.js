@@ -56,7 +56,7 @@ app.get('/Login',(req,res) => {
 		    res.json(
 		    	new Result({data:{
 		    		err_code:'OK',
-		    		message:'验证成功！'
+		    		message:'验证成功！',
 		    		data:results
 		    	}})
 		    );  
